@@ -12,7 +12,7 @@ interface HomePageProps {
 
 const HomePage: React.FC<HomePageProps> = ({ t, onRunTests, onNavigate }) => {
   return (
-    <div className="max-w-5xl mx-auto pt-4 md:pt-10 animate-in fade-in duration-700 w-full">
+    <div className="max-w-5xl mx-auto pt-2 md:pt-4 lg:pt-10 animate-in fade-in duration-700 w-full px-2 md:px-0">
       <SystemHeader t={t} />
       <MissionBriefing 
         t={t} 

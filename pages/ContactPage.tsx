@@ -33,7 +33,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ t, onAddLog, onTriggerAchieve
   };
 
   return (
-    <div className="max-w-3xl mx-auto pt-4 animate-in fade-in duration-700 w-full">
+    <div className="max-w-3xl mx-auto pt-2 md:pt-4 animate-in fade-in duration-700 w-full px-2 md:px-0">
       {/* CONSOLE HEADER */}
       <div className="bg-slate-900 border border-slate-700 rounded-t-xl p-3 flex items-center justify-between relative overflow-hidden">
         <div className="absolute inset-0 bg-blue-500/5 z-0"></div>

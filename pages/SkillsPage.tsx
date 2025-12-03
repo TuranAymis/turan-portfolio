@@ -10,7 +10,7 @@ interface SkillsPageProps {
 
 const SkillsPage: React.FC<SkillsPageProps> = ({ t, onSkillClick }) => {
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-5xl mx-auto px-2 md:px-0">
       <div className="flex items-center justify-between mb-8 border-b border-ide-border pb-4">
         <div className="flex items-center gap-2">
           <Code className="text-blue-500" />
