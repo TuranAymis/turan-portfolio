@@ -18,7 +18,7 @@ const FileTextIcon = () => (
 
 const AboutPage: React.FC<AboutPageProps> = ({ t, level, xp, onSpawnFloatText }) => {
   return (
-    <div className="max-w-6xl mx-auto animate-in fade-in duration-700">
+    <div className="max-w-6xl mx-auto animate-in fade-in duration-700 px-2 md:px-0">
       <div className="flex items-center gap-2 mb-6 text-slate-500 font-mono text-sm border-b border-ide-border pb-2">
         <FileTextIcon /> <span>{t.charSheet}</span>
       </div>

@@ -27,17 +27,17 @@ const ExperiencePage: React.FC<ExperiencePageProps> = ({ t, language, onSpawnFlo
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto px-2 md:px-0">
       <div className="flex items-center gap-2 mb-8 text-slate-500 font-mono text-sm border-b border-ide-border pb-2">
         <TermIcon size={16} /> <span>{t.deploymentLog}</span>
       </div>
 
-      <div className="space-y-8 relative pl-6 border-l-2 border-slate-700 ml-2">
+      <div className="space-y-8 relative pl-4 md:pl-6 border-l-2 border-slate-700 ml-2">
         {getExperience(language).map((job) => {
           const isExpanded = expandedJobIds.has(job.id);
           return (
             <div key={job.id} className="relative animate-in slide-in-from-bottom-4 duration-500 group">
-              <div className="absolute -left-[33px] top-0 w-5 h-5 rounded-full bg-slate-900 border-4 border-blue-500 group-hover:scale-125 transition-transform group-hover:border-emerald-400"></div>
+              <div className="absolute -left-[25px] md:-left-[33px] top-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-slate-900 border-2 md:border-4 border-blue-500 group-hover:scale-125 transition-transform group-hover:border-emerald-400"></div>
               
               <div className="bg-slate-900 p-6 rounded-xl border border-slate-700 hover:border-slate-500 transition-all hover:shadow-lg">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">

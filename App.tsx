@@ -323,7 +323,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Viewport */}
-          <div className={`flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-8 scroll-smooth relative transition-all duration-300 ${isTerminalOpen ? 'pb-80' : 'pb-24'}`} id="main-scroll">
+          <div className={`flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-8 scroll-smooth relative transition-all duration-300 ${isTerminalOpen ? 'pb-48 md:pb-80' : 'pb-20 md:pb-24'}`} id="main-scroll">
             <div className="animate-in fade-in duration-500 slide-in-from-bottom-2">
               {currentView === ViewState.HOME && (
                 <HomePage 

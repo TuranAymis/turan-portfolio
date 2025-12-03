@@ -10,7 +10,7 @@ interface MissionBriefingProps {
 
 const MissionBriefing: React.FC<MissionBriefingProps> = ({ t, onRunTests, onNavigateToSkills }) => {
   return (
-    <div className="bg-slate-900/80 border border-slate-700 rounded-lg p-4 md:p-8 relative overflow-hidden group shadow-2xl">
+    <div className="bg-slate-900/80 border border-slate-700 rounded-lg p-3 sm:p-4 md:p-8 relative overflow-hidden group shadow-2xl">
       {/* Background Scanline */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-0 pointer-events-none bg-[length:100%_4px,3px_100%]"></div>
       <div className="absolute top-0 right-0 p-4 opacity-20">
@@ -23,7 +23,7 @@ const MissionBriefing: React.FC<MissionBriefingProps> = ({ t, onRunTests, onNavi
             <Target size={16} /> {t.missionBrief}
           </h3>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tighter uppercase glitch-effect break-words">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tighter uppercase glitch-effect break-words">
             TURAN AYMIS
           </h1>
           

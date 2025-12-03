@@ -52,7 +52,7 @@ const Terminal: React.FC<TerminalProps> = ({ logs, isOpen, toggleOpen, onCommand
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 md:left-64 lg:right-72 h-64 bg-[#0a0f18] border-t border-ide-border flex flex-col z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+    <div className="fixed bottom-0 left-0 right-0 md:left-64 lg:right-72 h-48 md:h-64 bg-[#0a0f18] border-t border-ide-border flex flex-col z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
       {/* Terminal Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-ide-sidebar border-b border-ide-border shrink-0">
         <div className="flex items-center gap-2">
