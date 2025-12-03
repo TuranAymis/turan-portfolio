@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { LogEntry, TranslationDictionary } from '../types';
 import { Terminal as TerminalIcon, XCircle, MinusCircle, Maximize2 } from 'lucide-react';
@@ -37,10 +38,11 @@ const Terminal: React.FC<TerminalProps> = ({ logs, isOpen, toggleOpen, onCommand
     return (
       <button 
         onClick={toggleOpen}
-        className="fixed bottom-0 right-0 lg:right-72 left-0 md:left-64 bg-ide-border text-ide-text text-xs px-4 py-1 flex items-center gap-2 hover:bg-slate-600 transition-colors z-50 border-t border-ide-bg shadow-lg"
+        className="fixed bottom-0 left-0 right-0 md:left-64 lg:right-72 bg-ide-border text-ide-text text-xs px-4 py-1 flex items-center gap-2 hover:bg-slate-600 transition-colors z-50 border-t border-ide-bg shadow-lg"
       >
         <TerminalIcon size={12} />
-        <span>Output Terminal</span>
+        <span className="hidden sm:inline">Output Terminal</span>
+        <span className="sm:hidden">Terminal</span>
         <span className="ml-auto flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
             {t.termReady}
@@ -50,7 +52,7 @@ const Terminal: React.FC<TerminalProps> = ({ logs, isOpen, toggleOpen, onCommand
   }
 
   return (
-    <div className="fixed bottom-0 right-0 lg:right-72 left-0 md:left-64 h-64 bg-[#0a0f18] border-t border-ide-border flex flex-col z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+    <div className="fixed bottom-0 left-0 right-0 md:left-64 lg:right-72 h-64 bg-[#0a0f18] border-t border-ide-border flex flex-col z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
       {/* Terminal Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-ide-sidebar border-b border-ide-border shrink-0">
         <div className="flex items-center gap-2">
@@ -102,7 +104,7 @@ const Terminal: React.FC<TerminalProps> = ({ logs, isOpen, toggleOpen, onCommand
                 type="text" 
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="bg-transparent border-none outline-none flex-1 text-slate-100 placeholder-slate-600"
+                className="bg-transparent border-none outline-none flex-1 text-slate-100 placeholder-slate-600 min-w-0 text-base md:text-xs"
                 autoFocus
                 placeholder={t.termPlaceholder}
                 spellCheck={false}

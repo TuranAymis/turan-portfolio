@@ -40,7 +40,9 @@ import {
   Wifi,
   Lock,
   Send,
-  Radio
+  Radio,
+  Menu,
+  Trophy
 } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -51,6 +53,10 @@ const App: React.FC = () => {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [isTerminalOpen, setIsTerminalOpen] = useState(true);
   const [showCmdPalette, setShowCmdPalette] = useState(false);
+  
+  // Mobile UI State
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isStatsOpen, setIsStatsOpen] = useState(false);
   
   // Contact Form State
   const [contactName, setContactName] = useState('');
@@ -348,7 +354,7 @@ const App: React.FC = () => {
   // --- RENDERERS ---
 
   const renderHome = () => (
-    <div className="max-w-5xl mx-auto pt-10 animate-in fade-in duration-700">
+    <div className="max-w-5xl mx-auto pt-4 md:pt-10 animate-in fade-in duration-700 w-full">
       
       {/* SYSTEM HEADER */}
       <div className="flex items-center justify-between mb-6 text-xs font-mono text-emerald-500 border-b border-emerald-500/30 pb-2 uppercase tracking-widest">
@@ -357,18 +363,18 @@ const App: React.FC = () => {
       </div>
 
       {/* MISSION BRIEFING CARD */}
-      <div className="bg-slate-900/80 border border-slate-700 rounded-lg p-8 relative overflow-hidden group shadow-2xl">
+      <div className="bg-slate-900/80 border border-slate-700 rounded-lg p-4 md:p-8 relative overflow-hidden group shadow-2xl">
         {/* Background Scanline */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-0 pointer-events-none bg-[length:100%_4px,3px_100%]"></div>
         <div className="absolute top-0 right-0 p-4 opacity-20"><Cpu size={120} className="text-blue-500 animate-pulse-slow" /></div>
         
-        <div className="relative z-10 flex flex-col md:flex-row items-start gap-8">
-            <div className="flex-1">
+        <div className="relative z-10 flex flex-col-reverse md:flex-row items-start gap-8">
+            <div className="flex-1 w-full">
                 <h3 className="text-blue-400 font-mono text-sm mb-2 flex items-center gap-2">
                     <Target size={16} /> {t.missionBrief}
                 </h3>
                 
-                <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tighter uppercase glitch-effect">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tighter uppercase glitch-effect break-words">
                     TURAN AYMIS
                 </h1>
                 
@@ -376,19 +382,19 @@ const App: React.FC = () => {
                     <Shield size={14} /> {t.role}
                 </div>
                 
-                <div className="text-slate-300 text-lg leading-relaxed mb-8 border-l-2 border-slate-600 pl-4">
+                <div className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 border-l-2 border-slate-600 pl-4">
                     <span className="text-slate-500 font-mono text-xs block mb-1">{t.currentObj}</span>
                     {t.summary}
                 </div>
 
                 {/* ACTION BUTTONS */}
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
                     <button 
                     onClick={(e) => runTestSuite(e)}
-                    className="relative overflow-hidden bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-8 rounded clip-path-polygon transition-all hover:translate-x-1 group/btn"
+                    className="relative overflow-hidden bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-8 rounded clip-path-polygon transition-all hover:translate-x-1 group/btn w-full sm:w-auto"
                     >
                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
-                        <div className="flex items-center gap-3 relative z-10">
+                        <div className="flex items-center justify-center gap-3 relative z-10">
                             <Play size={20} className="fill-current" />
                             <span className="tracking-widest">{t.missionStart}</span>
                         </div>
@@ -396,7 +402,7 @@ const App: React.FC = () => {
 
                     <button 
                     onClick={() => handleViewChange(ViewState.SKILLS)}
-                    className="bg-slate-800 border border-slate-600 hover:border-blue-500 text-slate-300 hover:text-white font-bold py-4 px-8 rounded transition-all hover:translate-x-1 flex items-center gap-3"
+                    className="bg-slate-800 border border-slate-600 hover:border-blue-500 text-slate-300 hover:text-white font-bold py-4 px-8 rounded transition-all hover:translate-x-1 flex items-center justify-center gap-3 w-full sm:w-auto"
                     >
                         <Code size={20} />
                         <span className="tracking-widest">{t.viewSpecs}</span>
@@ -405,7 +411,7 @@ const App: React.FC = () => {
             </div>
 
             {/* PROFILE IMAGE */}
-            <div className="hidden md:block relative shrink-0 group/img w-48 h-48 mt-4">
+            <div className="relative shrink-0 group/img w-32 h-32 md:w-48 md:h-48 mt-4 mx-auto md:mx-0">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-lg blur opacity-25 group-hover/img:opacity-50 transition duration-1000"></div>
                 <img 
                     src="https://github.com/TuranAymis.png" 
@@ -667,7 +673,7 @@ const App: React.FC = () => {
                             <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{job.role}</h3>
                             <h4 className="text-lg text-slate-300">{job.company}</h4>
                         </div>
-                        <div className="text-right">
+                        <div className="text-right mt-2 md:mt-0">
                             <div className="text-sm font-mono text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded inline-block">{job.period}</div>
                             <div className="text-xs text-slate-500 mt-1">{job.location}</div>
                         </div>
@@ -676,8 +682,8 @@ const App: React.FC = () => {
                     <ul className="space-y-2 mb-6">
                         {job.description.map((item, i) => (
                             <li key={i} className="flex gap-2 text-slate-300 text-sm">
-                                <span className="text-blue-500 mt-1">➜</span>
-                                {item}
+                                <span className="text-blue-500 mt-1 shrink-0">➜</span>
+                                <span>{item}</span>
                             </li>
                         ))}
                     </ul>
@@ -697,7 +703,7 @@ const App: React.FC = () => {
                     {/* EXPANSION BUTTON */}
                     <button 
                         onClick={(e) => toggleJobDetails(job.id, e)}
-                        className={`flex items-center gap-2 text-sm font-bold px-4 py-2 rounded transition-colors w-full border border-dashed ${isExpanded ? 'bg-slate-800 text-blue-400 border-blue-500/50' : 'bg-slate-900 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-800'}`}
+                        className={`flex items-center justify-center gap-2 text-sm font-bold px-4 py-2 rounded transition-colors w-full border border-dashed ${isExpanded ? 'bg-slate-800 text-blue-400 border-blue-500/50' : 'bg-slate-900 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-800'}`}
                     >
                         {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                         {isExpanded ? t.hideDetails : t.viewProject}
@@ -730,18 +736,18 @@ const App: React.FC = () => {
   );
 
   const renderContact = () => (
-    <div className="max-w-3xl mx-auto pt-4 animate-in fade-in duration-700">
+    <div className="max-w-3xl mx-auto pt-4 animate-in fade-in duration-700 w-full">
          
          {/* CONSOLE HEADER */}
          <div className="bg-slate-900 border border-slate-700 rounded-t-xl p-3 flex items-center justify-between relative overflow-hidden">
             <div className="absolute inset-0 bg-blue-500/5 z-0"></div>
-            <div className="flex items-center gap-3 relative z-10">
-                <Wifi size={18} className="text-emerald-400 animate-pulse" />
-                <span className="font-mono text-sm font-bold text-emerald-400 tracking-widest uppercase">{t.commsTitle}</span>
+            <div className="flex items-center gap-3 relative z-10 min-w-0 flex-1 mr-2">
+                <Wifi size={18} className="text-emerald-400 animate-pulse shrink-0" />
+                <span className="font-mono text-sm font-bold text-emerald-400 tracking-widest uppercase truncate">{t.commsTitle}</span>
             </div>
-            <div className="flex items-center gap-2 relative z-10">
+            <div className="flex items-center gap-2 relative z-10 shrink-0">
                 <div className="flex flex-col gap-0.5 items-end">
-                    <span className="text-[10px] text-slate-500 font-mono uppercase">{t.signalStrength}</span>
+                    <span className="text-[10px] text-slate-500 font-mono uppercase hidden sm:inline">{t.signalStrength}</span>
                     <div className="flex gap-0.5">
                         <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
                         <div className="w-1 h-3 bg-emerald-500 rounded-sm"></div>
@@ -753,7 +759,7 @@ const App: React.FC = () => {
          </div>
          
          {/* MAIN CONSOLE BODY */}
-         <div className="bg-[#0a0f18] border-x border-b border-slate-700 rounded-b-xl p-8 shadow-2xl relative overflow-hidden">
+         <div className="bg-[#0a0f18] border-x border-b border-slate-700 rounded-b-xl p-4 md:p-8 shadow-2xl relative overflow-hidden">
             {/* Scanline Background */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,255,0,0.02)_50%)] bg-[length:100%_4px] pointer-events-none z-0"></div>
             
@@ -762,36 +768,36 @@ const App: React.FC = () => {
                 {/* Security Badge */}
                 <div className="flex items-center justify-center mb-6">
                     <div className="bg-slate-900/80 border border-slate-700 px-4 py-1.5 rounded-full flex items-center gap-2 text-xs font-mono text-slate-400">
-                        <Lock size={12} className="text-emerald-500" />
+                        <Lock size={12} className="text-emerald-500 shrink-0" />
                         <span>{t.encryption}</span>
                     </div>
                 </div>
 
                 <form className="space-y-6" onSubmit={handleContactSubmit}>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                         <div className="space-y-2 group">
                             <label className="text-[10px] text-blue-400 font-mono uppercase tracking-widest flex items-center gap-2">
-                                <User size={12} /> {t.sourceId}
+                                <User size={12} className="shrink-0" /> {t.sourceId}
                             </label>
                             <input 
                                 type="text"
                                 value={contactName}
                                 onChange={(e) => setContactName(e.target.value)}
-                                className="w-full bg-slate-900/50 border-b-2 border-slate-700 text-slate-200 font-mono p-2 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none placeholder-slate-700" 
+                                className="w-full bg-slate-900/50 border-b-2 border-slate-700 text-slate-200 font-mono p-2 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none placeholder-slate-700 text-base md:text-sm" 
                                 placeholder="IDENT_CODE_OR_NAME" 
                                 required 
                             />
                         </div>
                         <div className="space-y-2 group">
                             <label className="text-[10px] text-blue-400 font-mono uppercase tracking-widest flex items-center gap-2">
-                                <Radio size={12} /> {t.commFreq}
+                                <Radio size={12} className="shrink-0" /> {t.commFreq}
                             </label>
                             <input 
                                 type="email"
                                 value={contactEmail}
                                 onChange={(e) => setContactEmail(e.target.value)} 
-                                className="w-full bg-slate-900/50 border-b-2 border-slate-700 text-slate-200 font-mono p-2 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none placeholder-slate-700" 
+                                className="w-full bg-slate-900/50 border-b-2 border-slate-700 text-slate-200 font-mono p-2 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none placeholder-slate-700 text-base md:text-sm" 
                                 placeholder="USER@DOMAIN.COM" 
                                 required 
                             />
@@ -800,12 +806,12 @@ const App: React.FC = () => {
                     
                     <div className="space-y-2">
                         <label className="text-[10px] text-blue-400 font-mono uppercase tracking-widest flex items-center gap-2">
-                            <FileCode size={12} /> {t.dataPayload}
+                            <FileCode size={12} className="shrink-0" /> {t.dataPayload}
                         </label>
                         <textarea 
                             value={contactMessage}
                             onChange={(e) => setContactMessage(e.target.value)}
-                            className="w-full bg-slate-900/50 border-2 border-slate-700 rounded text-slate-200 font-mono p-4 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none h-32 placeholder-slate-700 resize-none" 
+                            className="w-full bg-slate-900/50 border-2 border-slate-700 rounded text-slate-200 font-mono p-4 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none h-32 placeholder-slate-700 resize-none text-base md:text-sm" 
                             placeholder="> INITIATE TRANSMISSION SEQUENCE..." 
                             required
                         ></textarea>
@@ -813,7 +819,7 @@ const App: React.FC = () => {
 
                     <button 
                         type="submit" 
-                        className="w-full group relative overflow-hidden bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded transition-all active:scale-[0.98]"
+                        className="w-full group relative overflow-hidden bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded transition-all active:scale-[0.98] touch-manipulation"
                     >
                         <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.1)_10px,rgba(255,255,255,0.1)_20px)] opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="flex items-center justify-center gap-3 relative z-10">
@@ -827,19 +833,19 @@ const App: React.FC = () => {
          </div>
 
          {/* FREQUENCY LINKS */}
-         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 pb-20 md:pb-0">
              {[
-                { label: 'GITHUB_UPLINK', icon: Github, href: 'https://github.com/TuranAymis', color: 'hover:border-white hover:text-white' },
-                { label: 'LINKEDIN_FEED', icon: Linkedin, href: 'https://linkedin.com/in/turan-aymis/', color: 'hover:border-blue-400 hover:text-blue-400' },
-                { label: 'DIRECT_EMAIL', icon: Mail, href: 'mailto:turanaymis@gmail.com', color: 'hover:border-amber-400 hover:text-amber-400' },
-                { label: 'VOICE_CHANNEL', icon: Phone, href: 'tel:+905069402813', color: 'hover:border-purple-400 hover:text-purple-400' }
+                { label: 'GITHUB', icon: Github, href: 'https://github.com/TuranAymis', color: 'hover:border-white hover:text-white' },
+                { label: 'LINKEDIN', icon: Linkedin, href: 'https://linkedin.com/in/turan-aymis/', color: 'hover:border-blue-400 hover:text-blue-400' },
+                { label: 'EMAIL', icon: Mail, href: 'mailto:turanaymis@gmail.com', color: 'hover:border-amber-400 hover:text-amber-400' },
+                { label: 'CALL', icon: Phone, href: 'tel:+905069402813', color: 'hover:border-purple-400 hover:text-purple-400' }
              ].map((link, i) => (
                  <a 
                     key={i} 
                     href={link.href} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className={`flex flex-col items-center gap-2 p-4 bg-slate-900/80 border border-slate-700 rounded text-slate-500 transition-all hover:bg-slate-800 hover:-translate-y-1 group ${link.color}`}
+                    className={`flex flex-col items-center gap-2 p-4 bg-slate-900/80 border border-slate-700 rounded text-slate-500 transition-all hover:bg-slate-800 hover:-translate-y-1 group ${link.color} active:scale-95 touch-manipulation`}
                  >
                     <link.icon size={20} className="transition-colors" />
                     <span className="text-[10px] font-mono tracking-wider">{link.label}</span>
@@ -857,13 +863,13 @@ const App: React.FC = () => {
   // Command Palette Component
   const CommandPalette = () => (
     <div className="fixed inset-0 bg-black/50 z-[60] flex items-start justify-center pt-32 backdrop-blur-sm" onClick={() => setShowCmdPalette(false)}>
-        <div className="bg-slate-900 w-[500px] rounded-lg border border-slate-700 shadow-2xl p-2 animate-in fade-in slide-in-from-top-4" onClick={e => e.stopPropagation()}>
+        <div className="bg-slate-900 w-[90%] md:w-[500px] rounded-lg border border-slate-700 shadow-2xl p-2 animate-in fade-in slide-in-from-top-4" onClick={e => e.stopPropagation()}>
             <div className="flex items-center gap-2 px-3 py-2 border-b border-slate-700 mb-2 text-slate-400">
                 <Search size={16} />
                 <input 
                     autoFocus 
                     placeholder="Type a command or search..." 
-                    className="bg-transparent border-none outline-none flex-1 text-slate-200"
+                    className="bg-transparent border-none outline-none flex-1 text-slate-200 min-w-0"
                 />
                 <span className="text-xs border border-slate-700 px-1.5 rounded bg-slate-800">ESC</span>
             </div>
@@ -890,16 +896,67 @@ const App: React.FC = () => {
         {/* GAME VISUAL LAYER */}
         <GameOverlay floatingTexts={floatingTexts} toasts={toasts} onToastClick={dismissToast} t={t} />
         
-        {/* Navigation Sidebar */}
+        {/* Mobile Header Bar */}
+        <div className="md:hidden fixed top-0 left-0 right-0 h-14 bg-[#0f172a] border-b border-ide-border z-30 flex items-center justify-between px-4">
+             <div className="flex items-center gap-3">
+                 <button onClick={() => setIsMobileMenuOpen(true)} className="text-slate-400 hover:text-white">
+                     <Menu size={24} />
+                 </button>
+                 <span className="font-bold text-sm tracking-tight text-white">QA_WORKSPACE</span>
+             </div>
+             
+             <div className="flex items-center gap-3">
+                 <button onClick={() => setIsStatsOpen(true)} className="text-yellow-500 hover:text-yellow-400 relative">
+                     <Trophy size={20} />
+                     {activeQuest && !activeQuest.isCompleted && (
+                         <span className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                     )}
+                 </button>
+             </div>
+        </div>
+
+        {/* Mobile Sidebar Overlay */}
+        {isMobileMenuOpen && (
+            <div className="fixed inset-0 z-50 md:hidden flex">
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)}></div>
+                <Sidebar 
+                    currentView={currentView} 
+                    changeView={handleViewChange} 
+                    t={t} 
+                    className="w-[80%] max-w-[300px] h-full relative z-10 shadow-2xl animate-in slide-in-from-left duration-200"
+                    onClose={() => setIsMobileMenuOpen(false)}
+                />
+            </div>
+        )}
+
+        {/* Mobile Stats Overlay */}
+        {isStatsOpen && (
+             <div className="fixed inset-0 z-50 md:hidden flex justify-end">
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsStatsOpen(false)}></div>
+                <GamificationBar 
+                    level={level} 
+                    xp={xp} 
+                    nextLevelXp={level * 1000} 
+                    coverage={coverage} 
+                    achievements={unlockedAchievements.length} 
+                    activeQuest={activeQuest}
+                    t={t}
+                    className="w-[85%] max-w-[320px] h-full relative z-10 animate-in slide-in-from-right duration-200 bg-slate-900 border-l border-ide-border"
+                    onClose={() => setIsStatsOpen(false)}
+                />
+            </div>
+        )}
+
+        {/* Desktop Sidebar */}
         <div className="hidden md:block">
             <Sidebar currentView={currentView} changeView={handleViewChange} t={t} />
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col h-full relative">
+        <div className="flex-1 flex flex-col h-full relative pt-14 md:pt-0">
           
-          {/* Top Bar with Tabs and Lang Switcher */}
-          <div className="h-9 bg-[#0f172a] border-b border-ide-border flex items-end justify-between px-2 gap-1 shrink-0 select-none">
+          {/* Desktop Top Bar (Hidden on Mobile) */}
+          <div className="hidden md:flex h-9 bg-[#0f172a] border-b border-ide-border items-end justify-between px-2 gap-1 shrink-0 select-none">
              <div className="flex items-end gap-1 overflow-x-auto">
                 <div className="px-4 py-1.5 bg-[#1e293b] text-blue-400 text-xs font-mono border-t-2 border-blue-500 rounded-t flex items-center gap-2 pr-8 relative">
                     <div className="flex items-center gap-2">
@@ -935,12 +992,12 @@ const App: React.FC = () => {
           </div>
 
           {/* Breadcrumbs */}
-          <div className="h-8 bg-[#1e293b] border-b border-ide-border flex items-center px-4 text-xs text-slate-500 font-mono shrink-0 select-none" dir="ltr">
+          <div className="h-8 bg-[#1e293b] border-b border-ide-border flex items-center px-4 text-xs text-slate-500 font-mono shrink-0 select-none hidden md:flex" dir="ltr">
             portfolio &gt; src &gt; pages &gt; <span className="text-slate-300 ml-1">{currentView}</span>
           </div>
 
           {/* Viewport */}
-          <div className={`flex-1 overflow-y-auto p-8 scroll-smooth relative transition-all duration-300 ${isTerminalOpen ? 'pb-80' : 'pb-24'}`} id="main-scroll">
+          <div className={`flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-8 scroll-smooth relative transition-all duration-300 ${isTerminalOpen ? 'pb-80' : 'pb-24'}`} id="main-scroll">
              <div className="animate-in fade-in duration-500 slide-in-from-bottom-2">
                 {currentView === ViewState.HOME && renderHome()}
                 {currentView === ViewState.ABOUT && renderAbout()}
@@ -954,7 +1011,7 @@ const App: React.FC = () => {
                 <button 
                     key={bug.id}
                     onClick={(e) => catchBug(e, bug.id)}
-                    className="absolute hover:text-red-400 text-slate-600 transition-all hover:scale-125 animate-pulse"
+                    className="absolute hover:text-red-400 text-slate-600 transition-all hover:scale-125 animate-pulse z-0"
                     style={{ top: bug.top, left: bug.left }}
                     title="Click to squash!"
                 >
@@ -973,34 +1030,22 @@ const App: React.FC = () => {
           />
         </div>
 
-        {/* Gamification Sidebar (HUD) */}
-        <GamificationBar 
-            level={level} 
-            xp={xp} 
-            nextLevelXp={level * 1000} 
-            coverage={coverage} 
-            achievements={unlockedAchievements.length} 
-            activeQuest={activeQuest}
-            t={t}
-        />
+        {/* Desktop Gamification Sidebar (HUD) */}
+        <div className="hidden lg:block w-72 shrink-0">
+            <GamificationBar 
+                level={level} 
+                xp={xp} 
+                nextLevelXp={level * 1000} 
+                coverage={coverage} 
+                achievements={unlockedAchievements.length} 
+                activeQuest={activeQuest}
+                t={t}
+                className="h-full border-l border-ide-border"
+            />
+        </div>
         
         {/* Command Palette Overlay */}
         {showCmdPalette && <CommandPalette />}
-        
-        {/* Mobile Nav Button */}
-        <div className="md:hidden fixed top-4 right-4 z-50">
-            <button 
-                className="bg-blue-600 p-2 rounded-full shadow-lg text-white"
-                onClick={() => {
-                    const views = Object.values(ViewState);
-                    const idx = views.indexOf(currentView);
-                    const next = views[(idx + 1) % views.length];
-                    handleViewChange(next);
-                }}
-            >
-                <Globe size={24} />
-            </button>
-        </div>
       </div>
     </HashRouter>
   );
