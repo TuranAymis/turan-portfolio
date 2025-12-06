@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { TranslationDictionary } from '../types';
+import { useGame } from '../context/GameContext';
+import { useTerminalContext } from '../context/TerminalContext';
+import { useAppContext } from '../context/AppContext';
 import { Wifi, Lock, User, Radio, FileCode, Send, Github, Linkedin, Mail, Phone } from 'lucide-react';
 import { handleContactSubmit as submitContact } from '../utils/contactHandler';
+import SEO from '../components/SEO';
 
-interface ContactPageProps {
-  t: TranslationDictionary;
-  onAddLog: (message: string, level: string) => void;
-  onTriggerAchievement: (title: string, xpReward: number) => void;
-  onSpawnToast: (title: string, subtitle: string, type: 'achievement' | 'level-up' | 'quest') => void;
-}
-
-const ContactPage: React.FC<ContactPageProps> = ({ t, onAddLog, onTriggerAchievement, onSpawnToast }) => {
+const ContactPage: React.FC = () => {
+  const { t } = useAppContext();
+  const { triggerAchievement, spawnToast } = useGame();
+  const { addLog } = useTerminalContext();
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactMessage, setContactMessage] = useState('');
@@ -20,9 +19,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ t, onAddLog, onTriggerAchieve
       name: contactName,
       email: contactEmail,
       message: contactMessage,
-      addLog: onAddLog,
-      triggerAchievement: onTriggerAchievement,
-      spawnToast: onSpawnToast,
+      addLog: addLog,
+      triggerAchievement: triggerAchievement,
+      spawnToast: spawnToast,
       t,
       onClearForm: () => {
         setContactName('');
@@ -34,6 +33,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ t, onAddLog, onTriggerAchieve
 
   return (
     <div className="max-w-3xl mx-auto pt-2 md:pt-4 animate-in fade-in duration-700 w-full px-2 md:px-0">
+      <SEO
+        title="Contact Turan Aymis | Hire QA Engineer"
+        description="Get in touch with Turan Aymis for QA Engineering roles. Secure transmission channel open."
+      />
       {/* CONSOLE HEADER */}
       <div className="bg-slate-900 border border-slate-700 rounded-t-xl p-3 flex items-center justify-between relative overflow-hidden">
         <div className="absolute inset-0 bg-blue-500/5 z-0"></div>
@@ -53,12 +56,12 @@ const ContactPage: React.FC<ContactPageProps> = ({ t, onAddLog, onTriggerAchieve
           </div>
         </div>
       </div>
-      
+
       {/* MAIN CONSOLE BODY */}
       <div className="bg-[#0a0f18] border-x border-b border-slate-700 rounded-b-xl p-4 md:p-8 shadow-2xl relative overflow-hidden">
         {/* Scanline Background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,255,0,0.02)_50%)] bg-[length:100%_4px] pointer-events-none z-0"></div>
-        
+
         <div className="relative z-10 space-y-6">
           {/* Security Badge */}
           <div className="flex items-center justify-center mb-6">
@@ -74,45 +77,45 @@ const ContactPage: React.FC<ContactPageProps> = ({ t, onAddLog, onTriggerAchieve
                 <label className="text-[10px] text-blue-400 font-mono uppercase tracking-widest flex items-center gap-2">
                   <User size={12} className="shrink-0" /> {t.sourceId}
                 </label>
-                <input 
+                <input
                   type="text"
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
-                  className="w-full bg-slate-900/50 border-b-2 border-slate-700 text-slate-200 font-mono p-2 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none placeholder-slate-700 text-base md:text-sm" 
-                  placeholder="IDENT_CODE_OR_NAME" 
-                  required 
+                  className="w-full bg-slate-900/50 border-b-2 border-slate-700 text-slate-200 font-mono p-2 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none placeholder-slate-700 text-base md:text-sm"
+                  placeholder="IDENT_CODE_OR_NAME"
+                  required
                 />
               </div>
               <div className="space-y-2 group">
                 <label className="text-[10px] text-blue-400 font-mono uppercase tracking-widest flex items-center gap-2">
                   <Radio size={12} className="shrink-0" /> {t.commFreq}
                 </label>
-                <input 
+                <input
                   type="email"
                   value={contactEmail}
-                  onChange={(e) => setContactEmail(e.target.value)} 
-                  className="w-full bg-slate-900/50 border-b-2 border-slate-700 text-slate-200 font-mono p-2 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none placeholder-slate-700 text-base md:text-sm" 
-                  placeholder="USER@DOMAIN.COM" 
-                  required 
+                  onChange={(e) => setContactEmail(e.target.value)}
+                  className="w-full bg-slate-900/50 border-b-2 border-slate-700 text-slate-200 font-mono p-2 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none placeholder-slate-700 text-base md:text-sm"
+                  placeholder="USER@DOMAIN.COM"
+                  required
                 />
               </div>
             </div>
-            
+
             <div className="space-y-2">
               <label className="text-[10px] text-blue-400 font-mono uppercase tracking-widest flex items-center gap-2">
                 <FileCode size={12} className="shrink-0" /> {t.dataPayload}
               </label>
-              <textarea 
+              <textarea
                 value={contactMessage}
                 onChange={(e) => setContactMessage(e.target.value)}
-                className="w-full bg-slate-900/50 border-2 border-slate-700 rounded text-slate-200 font-mono p-4 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none h-32 placeholder-slate-700 resize-none text-base md:text-sm" 
-                placeholder="> INITIATE TRANSMISSION SEQUENCE..." 
+                className="w-full bg-slate-900/50 border-2 border-slate-700 rounded text-slate-200 font-mono p-4 focus:border-blue-500 focus:bg-slate-900 transition-all outline-none h-32 placeholder-slate-700 resize-none text-base md:text-sm"
+                placeholder="> INITIATE TRANSMISSION SEQUENCE..."
                 required
               ></textarea>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="w-full group relative overflow-hidden bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded transition-all active:scale-[0.98] touch-manipulation"
             >
               <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.1)_10px,rgba(255,255,255,0.1)_20px)] opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -133,11 +136,11 @@ const ContactPage: React.FC<ContactPageProps> = ({ t, onAddLog, onTriggerAchieve
           { label: 'EMAIL', icon: Mail, href: 'mailto:turanaymis@gmail.com', color: 'hover:border-amber-400 hover:text-amber-400' },
           { label: 'CALL', icon: Phone, href: 'tel:+905069402813', color: 'hover:border-purple-400 hover:text-purple-400' }
         ].map((link, i) => (
-          <a 
-            key={i} 
-            href={link.href} 
-            target="_blank" 
-            rel="noreferrer" 
+          <a
+            key={i}
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
             className={`flex flex-col items-center gap-2 p-4 bg-slate-900/80 border border-slate-700 rounded text-slate-500 transition-all hover:bg-slate-800 hover:-translate-y-1 group ${link.color} active:scale-95 touch-manipulation`}
           >
             <link.icon size={20} className="transition-colors" />

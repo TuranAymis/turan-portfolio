@@ -54,6 +54,10 @@ export const useTerminal = ({ language, onNavigate, onRunTests }: UseTerminalPro
       case 'goto contact':
         onNavigate(ViewState.CONTACT);
         break;
+      case 'system_force_exception':
+        // setIsCrashed(true); // DISABLED FOR PRODUCTION
+        addLog('Error simulation disabled in production.', 'WARN');
+        break;
       default:
         addLog(`Command not found: ${cmd}.`, 'ERROR');
     }

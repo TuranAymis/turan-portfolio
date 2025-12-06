@@ -113,6 +113,12 @@ export interface ProjectDetail {
   title: string;
   desc: string;
   impact: string;
+  // Test Strategy
+  testStrategy?: {
+    automationFramework: string;
+    testScope: string;
+    testCoverage: number; // 0-100
+  };
 }
 
 export interface ExperienceItem {
@@ -132,12 +138,36 @@ export interface LogEntry {
   message: string;
 }
 
+
 export enum ViewState {
   HOME = 'overview',
   ABOUT = 'about.md',
   SKILLS = 'skills.spec.ts',
   EXPERIENCE = 'history.log',
   CONTACT = 'report_bug.form'
+}
+
+// --- BUG HUNT TYPES ---
+export type BugType = 'visual' | 'functional' | 'console' | 'security';
+export type BugDifficulty = 'easy' | 'medium' | 'hard';
+
+export interface Bug {
+  id: string;
+  type: BugType;
+  difficulty: BugDifficulty;
+  title: string;
+  description: string;
+  location: ViewState | 'global'; // Where it appears
+  isCaught: boolean;
+  xpReward: number;
+
+  // Positioning for Visual Bugs
+  top?: string;
+  left?: string;
+  style?: React.CSSProperties;
+
+  // Interaction
+  glitchEffect?: string; // CSS class for animation
 }
 
 // --- GAME TYPES ---
