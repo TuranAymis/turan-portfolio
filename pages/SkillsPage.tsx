@@ -1,16 +1,25 @@
 import React from 'react';
-import { TranslationDictionary } from '../types';
+import { useGame } from '../context/GameContext';
+import { useAppContext } from '../context/AppContext';
 import { Code, Activity } from 'lucide-react';
 import { SKILLS } from '../constants';
 
-interface SkillsPageProps {
-  t: TranslationDictionary;
-  onSkillClick: (e: React.MouseEvent, skillName: string) => void;
-}
+import SEO from '../components/SEO';
 
-const SkillsPage: React.FC<SkillsPageProps> = ({ t, onSkillClick }) => {
+const SkillsPage: React.FC = () => {
+  const { t } = useAppContext();
+  const { spawnFloatText, gainXp } = useGame();
+
+  const handleSkillClick = (e: React.MouseEvent, skillName: string) => {
+    spawnFloatText(`Running ${skillName}...`, e.clientX, e.clientY, 'text-emerald-300');
+    gainXp(10, e.clientX, e.clientY - 20);
+  };
   return (
     <div className="max-w-5xl mx-auto px-2 md:px-0">
+      <SEO
+        title="QA Skills & Tech Stack | Selenium, Appium, Java"
+        description="Explore Turan Aymis's technical skills including Test Automation (Selenium, Appium), Programming (Java, Python), and API Testing."
+      />
       <div className="flex items-center justify-between mb-8 border-b border-ide-border pb-4">
         <div className="flex items-center gap-2">
           <Code className="text-blue-500" />
@@ -23,15 +32,15 @@ const SkillsPage: React.FC<SkillsPageProps> = ({ t, onSkillClick }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {SKILLS.map((skill) => (
-          <div 
-            key={skill.id} 
+          <div
+            key={skill.id}
             className="group bg-[#0f172a] border border-slate-700 rounded-lg overflow-hidden hover:border-blue-500 transition-all duration-300 cursor-pointer relative shadow-md hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
-            onClick={(e) => onSkillClick(e, skill.name)}
+            onClick={(e) => handleSkillClick(e, skill.name)}
           >
             {/* Test Card Header */}
             <div className="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
               <span className="font-mono text-xs font-bold text-slate-300 flex items-center gap-2">
-                <Activity size={12} className="text-blue-400" /> 
+                <Activity size={12} className="text-blue-400" />
                 {skill.id}.spec.ts
               </span>
               <div className="flex gap-1.5">

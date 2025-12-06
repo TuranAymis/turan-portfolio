@@ -1,24 +1,26 @@
 import React from 'react';
-import { TranslationDictionary } from '../types';
+import { useGame } from '../context/GameContext';
+import { useAppContext } from '../context/AppContext';
 import { CheckCircle, Brain, Scroll, Users, Zap, Dna, Package } from 'lucide-react';
-
-interface AboutPageProps {
-  t: TranslationDictionary;
-  level: number;
-  xp: number;
-  onSpawnFloatText: (text: string, x: number, y: number, color?: string) => void;
-}
 
 const FileTextIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-    <polyline points="14 2 14 8 20 8"/>
+    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+    <polyline points="14 2 14 8 20 8" />
   </svg>
 );
 
-const AboutPage: React.FC<AboutPageProps> = ({ t, level, xp, onSpawnFloatText }) => {
+import SEO from '../components/SEO';
+
+const AboutPage: React.FC = () => {
+  const { t } = useAppContext();
+  const { level, xp, spawnFloatText: onSpawnFloatText } = useGame();
   return (
     <div className="max-w-6xl mx-auto animate-in fade-in duration-700 px-2 md:px-0">
+      <SEO
+        title="About Turan Aymis | QA Automation Expert"
+        description="Learn more about Turan Aymis, a level 10 QA Engineer with a background in Electronics Teaching and a passion for bug hunting."
+      />
       <div className="flex items-center gap-2 mb-6 text-slate-500 font-mono text-sm border-b border-ide-border pb-2">
         <FileTextIcon /> <span>{t.charSheet}</span>
       </div>
@@ -54,7 +56,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ t, level, xp, onSpawnFloatText })
               <Dna size={18} className="text-purple-400" />
               <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">{t.stats}</h3>
             </div>
-            
+
             <div className="space-y-4">
               {[
                 { label: t.attributes.int, val: 18, color: 'bg-blue-500', icon: Brain },
@@ -95,9 +97,9 @@ const AboutPage: React.FC<AboutPageProps> = ({ t, level, xp, onSpawnFloatText })
               <Package size={18} />
               <h3 className="text-sm font-bold uppercase tracking-wider">{t.inventory} ({t.equipped})</h3>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div 
+              <div
                 className="bg-slate-900 border border-slate-700 rounded-lg p-4 flex gap-4 items-center hover:border-blue-500 transition-colors cursor-help group relative overflow-hidden"
                 onClick={(e) => onSpawnFloatText('+10 INT', e.clientX, e.clientY, 'text-blue-400')}
               >
@@ -111,7 +113,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ t, level, xp, onSpawnFloatText })
                 </div>
               </div>
 
-              <div 
+              <div
                 className="bg-slate-900 border border-slate-700 rounded-lg p-4 flex gap-4 items-center hover:border-purple-500 transition-colors cursor-help group relative overflow-hidden"
                 onClick={(e) => onSpawnFloatText('+15 WIS', e.clientX, e.clientY, 'text-purple-400')}
               >
