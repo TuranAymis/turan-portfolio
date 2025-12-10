@@ -6,6 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import AppContext from '../context/AppContext';
 import { Language, ViewState } from '../types';
 import { TRANSLATIONS } from '../constants';
+import { LocaleProvider } from '../context/LocaleContext';
 
 interface GameProviderWrapperProps {
     children: React.ReactNode;
@@ -13,13 +14,14 @@ interface GameProviderWrapperProps {
 
 const GameProviderWrapper: React.FC<GameProviderWrapperProps> = ({ children }) => {
     // Global State
-    const [language, setLanguage] = useState<Language>('en');
+    // const [language, setLanguage] = useState<Language>('en'); // Moved to LocaleContext
     const [isFeedbackOpen, setFeedbackOpen] = useState(false);
-    const t = TRANSLATIONS[language];
+    // const t = TRANSLATIONS[language]; // Moved to LocaleContext
 
     // References for Cross-Component Communication (Terminal <-> Layout)
     const navigateRef = useRef<(view: ViewState) => void>((v) => console.log("Nav not ready"));
     const runTestsRef = useRef<() => void>(() => console.log("Tests not ready"));
+    const updateQuestRef = useRef<(questId: string, amount?: number) => void>((q, a) => console.log("Quest update not ready"));
 
     // Registration Functions
     const registerNavigate = (fn: (view: ViewState) => void) => {
@@ -28,6 +30,14 @@ const GameProviderWrapper: React.FC<GameProviderWrapperProps> = ({ children }) =
 
     const registerRunTests = (fn: () => void) => {
         runTestsRef.current = fn;
+    };
+
+    const registerUpdateQuest = (fn: (questId: string, amount?: number) => void) => {
+        updateQuestRef.current = fn;
+    };
+
+    const triggerUpdateQuest = (questId: string, amount?: number) => {
+        updateQuestRef.current(questId, amount);
     };
 
     // Callback Wrappers (consumed by TerminalProvider)
@@ -43,27 +53,29 @@ const GameProviderWrapper: React.FC<GameProviderWrapperProps> = ({ children }) =
 
     return (
         <HelmetProvider>
-            <AppContext.Provider value={{
-                language,
-                setLanguage,
-                t,
-                registerNavigate,
-                registerRunTests,
-                isFeedbackOpen,
-                setFeedbackOpen
-            }}>
-                <GameProvider>
-                    <TerminalProvider
-                        language={language}
-                        onNavigate={handleNavigate}
-                        onRunTests={handleRunTests}
-                    >
-                        <BugProvider>
-                            {children}
-                        </BugProvider>
-                    </TerminalProvider>
-                </GameProvider>
-            </AppContext.Provider>
+            <LocaleProvider>
+                <AppContext.Provider value={{
+                    registerNavigate,
+                    registerRunTests,
+                    registerUpdateQuest,
+                    triggerUpdateQuest,
+                    isFeedbackOpen,
+                    setFeedbackOpen
+                }}>
+                    <GameProvider>
+                        <TerminalProvider
+                            language={'en'} // Handled by Terminal internal or update TerminalProvider
+                            onNavigate={handleNavigate}
+                            onRunTests={handleRunTests}
+                            updateQuest={triggerUpdateQuest}
+                        >
+                            <BugProvider>
+                                {children}
+                            </BugProvider>
+                        </TerminalProvider>
+                    </GameProvider>
+                </AppContext.Provider>
+            </LocaleProvider>
         </HelmetProvider>
     );
 };

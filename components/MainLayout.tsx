@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Terminal from './Terminal';
@@ -15,6 +15,7 @@ import BugLayer from './BugLayer';
 import PerformanceMonitor from './PerformanceMonitor';
 import FeedbackModal from './FeedbackModal';
 import { useAppContext } from '../context/AppContext';
+import { useLocaleContext } from '../context/LocaleContext';
 import { ViewState } from '../types';
 import { getQuests } from '../constants';
 import { handleRunTestSuite } from '../utils/testSuiteHandler';
@@ -55,7 +56,8 @@ const VIEW_PATH_MAP: Record<string, ViewState> = {
 };
 
 const MainLayout: React.FC = () => {
-    const { language, setLanguage, t, registerNavigate, registerRunTests } = useAppContext();
+    const { registerNavigate, registerRunTests, registerUpdateQuest } = useAppContext();
+    const { language, setLanguage, t } = useLocaleContext();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -76,6 +78,7 @@ const MainLayout: React.FC = () => {
     const gameState = useGame();
     // const bugs = useBugs(); // OLD HOOK REPLACED
     const { setCurrentView: setBugView } = useBugContext();
+
 
     // Sync View with BugContext
     useEffect(() => {
@@ -115,13 +118,35 @@ const MainLayout: React.FC = () => {
             const newCoverage = (newVisited.size / 5) * 100;
             gameState.setCoverage(newCoverage);
             gameState.gainXp(50);
-            questSystem.updateQuest('q3', 1);
+            questSystem.updateQuest('q1', 1); // Cypress Scout: Visit pages
 
             if (newVisited.size === 5) {
                 gameState.triggerAchievement("Full Coverage", 500, addLog);
             }
         }
     }, [currentView]);
+
+    // Sync 'Grand Master' Quest with Achievements
+    const unlockedCount = gameState.unlockedAchievements.length;
+    useEffect(() => {
+        if (questSystem.activeQuest?.id === 'q4') {
+            // Check if current progress matches unlocked achievements
+            const discrepancy = unlockedCount - questSystem.activeQuest.current;
+            if (discrepancy > 0) {
+                questSystem.updateQuest('q4', discrepancy);
+            }
+        }
+    }, [unlockedCount, questSystem.activeQuest, questSystem.updateQuest]);
+
+    // Polyglot Tester Quest: Track language changes
+    const languageChangedRef = useRef(false);
+    useEffect(() => {
+        // Complete quest on first language change (from default 'en')
+        if (!languageChangedRef.current && language !== 'en') {
+            languageChangedRef.current = true;
+            questSystem.updateQuest('q4', 1); // Polyglot Tester quest
+        }
+    }, [language, questSystem.updateQuest]);
 
     // Handle Programmatic Navigation (from Terminal)
     const handleProgrammaticNavigate = (view: ViewState) => {
@@ -153,7 +178,8 @@ const MainLayout: React.FC = () => {
     useEffect(() => {
         registerNavigate(handleProgrammaticNavigate);
         registerRunTests(() => handleRunTests());
-    }, [navigate]);
+        registerUpdateQuest(questSystem.updateQuest);
+    }, [navigate, questSystem.updateQuest]);
 
 
     // Intro Timer
@@ -181,22 +207,22 @@ const MainLayout: React.FC = () => {
     }
 
     return (
-        <div className="flex h-screen w-full bg-[#0f172a] text-slate-200 font-sans overflow-hidden selection:bg-blue-500/30 cursor-default" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+        <div className="flex h-screen w-full bg-[#0f172a] text-slate-200 font-sans overflow-hidden selection:bg-blue-500/30 cursor-default">
 
             {/* Intro Animation */}
-            {showIntro && <MatrixIntro onComplete={() => setShowIntro(false)} />}
+            {showIntro && <MatrixIntro />}
 
             {/* BUG HUNT OVERLAY FRAME (Global) */}
             <BugLayer />
 
             {/* GAME VISUAL LAYER */}
             <GameOverlay
-                t={t}
+                onToastClick={(id) => gameState.toasts.find(toast => toast.id === id)?.type === 'quest' ? setIsStatsOpen(true) : null}
             />
+            <FeedbackModal />
+
             {/* PERFORMANCE MONITORING (Headless) */}
             <PerformanceMonitor />
-
-            <FeedbackModal />
 
             {/* Mobile Header Bar */}
             <div className="md:hidden fixed top-0 left-0 right-0 h-14 bg-[#0f172a] border-b border-ide-border z-30 flex items-center justify-between px-4">
@@ -234,7 +260,6 @@ const MainLayout: React.FC = () => {
                     <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsStatsOpen(false)}></div>
                     <GamificationBar
                         activeQuest={questSystem.activeQuest}
-                        t={t}
                         className="w-[85%] max-w-[320px] h-full relative z-10 animate-in slide-in-from-right duration-200 bg-slate-900 border-l border-ide-border"
                         onClose={() => setIsStatsOpen(false)}
                     />
@@ -277,10 +302,6 @@ const MainLayout: React.FC = () => {
                         >
                             <option value="en">English</option>
                             <option value="tr">Türkçe</option>
-                            <option value="es">Español</option>
-                            <option value="zh">中文</option>
-                            <option value="hi">हिन्दी</option>
-                            <option value="ar">العربية</option>
                         </select>
                     </div>
                 </div>
@@ -301,16 +322,15 @@ const MainLayout: React.FC = () => {
                 <Terminal
                     isOpen={isTerminalOpen}
                     toggleOpen={() => setIsTerminalOpen(!isTerminalOpen)}
-                    t={t}
                 />
             </div>
 
             {/* Desktop Gamification Sidebar (HUD) */}
             <div className="hidden lg:block w-72 shrink-0">
+                {/* Gamification Bar */}
                 <GamificationBar
                     activeQuest={questSystem.activeQuest}
-                    t={t}
-                    className="h-full border-l border-ide-border"
+                    className="h-full border-r border-[#1e293b]"
                 />
             </div>
 

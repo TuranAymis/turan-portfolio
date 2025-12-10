@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Trophy, Zap, Shield, Target, Lightbulb, Terminal, CheckCircle2, X } from 'lucide-react';
 import { Quest, TranslationDictionary } from '../types';
 import { useGame } from '../context/GameContext';
+import { useLocaleContext } from '../context/LocaleContext';
 
 interface GamificationProps {
     activeQuest: Quest | null;
-    t: TranslationDictionary;
     className?: string; // Allow custom classes for mobile/desktop styling
     onClose?: () => void; // For mobile close button
 }
@@ -26,7 +26,8 @@ const HINTS = [
     "Pro Tip: Hover over skills to see confidence levels."
 ];
 
-const GamificationBar: React.FC<GamificationProps> = ({ activeQuest, t, className = "", onClose }) => {
+const GamificationBar: React.FC<GamificationProps> = ({ activeQuest, className = "", onClose }) => {
+    const { t } = useLocaleContext();
     const { level, xp, coverage, unlockedAchievements } = useGame();
     const nextLevelXp = level * 1000;
     const achievements = unlockedAchievements.length;
@@ -103,6 +104,25 @@ const GamificationBar: React.FC<GamificationProps> = ({ activeQuest, t, classNam
                                 style={{ width: `${(activeQuest.current / activeQuest.target) * 100}%` }}
                             ></div>
                         </div>
+
+                        {/* Sub-Objectives Checklist */}
+                        {activeQuest.objectives && activeQuest.objectives.length > 0 && (
+                            <div className="mt-3 space-y-1.5 border-t border-slate-700/50 pt-2">
+                                {activeQuest.objectives.map((obj, i) => {
+                                    const isUnlocked = unlockedAchievements.some(a => a.title === obj);
+                                    return (
+                                        <div key={i} className={`flex items-center gap-2 text-[10px] ${isUnlocked ? 'text-emerald-400 line-through opacity-60' : 'text-slate-400'}`}>
+                                            {isUnlocked ? (
+                                                <CheckCircle2 size={10} className="text-emerald-500 shrink-0" />
+                                            ) : (
+                                                <div className="w-2.5 h-2.5 rounded-full border border-slate-600 shrink-0" />
+                                            )}
+                                            <span className="truncate">{obj}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <div className="text-center py-4 text-emerald-400 flex flex-col items-center gap-2">

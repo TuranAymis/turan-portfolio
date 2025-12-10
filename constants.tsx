@@ -7,10 +7,6 @@ import { CONTENT, SKILLS as STATIC_SKILLS } from './data/content';
 export const TRANSLATIONS: Record<Language, TranslationDictionary> = {
   en: CONTENT.en.translations,
   tr: CONTENT.tr.translations,
-  es: CONTENT.en.translations, // Fallback
-  zh: CONTENT.en.translations, // Fallback
-  hi: CONTENT.en.translations, // Fallback
-  ar: CONTENT.en.translations, // Fallback
 };
 
 // --- GETTERS FOR DYNAMIC DATA ---

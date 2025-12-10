@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { useTerminalContext } from '../context/TerminalContext';
 import { useAppContext } from '../context/AppContext';
+import { useLocaleContext } from '../context/LocaleContext';
 import { Wifi, Lock, User, Radio, FileCode, Send, Github, Linkedin, Mail, Phone } from 'lucide-react';
 import { handleContactSubmit as submitContact } from '../utils/contactHandler';
 import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
-  const { t } = useAppContext();
+  const { t } = useLocaleContext();
   const { triggerAchievement, spawnToast } = useGame();
   const { addLog } = useTerminalContext();
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactMessage, setContactMessage] = useState('');
+
+  if (!t) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     submitContact(e, {

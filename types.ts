@@ -4,7 +4,7 @@ import React from 'react';
 export type SkillCategory = 'automation' | 'languages' | 'api' | 'devops' | 'tracking';
 
 // New Language Type
-export type Language = 'en' | 'tr' | 'es' | 'zh' | 'hi' | 'ar';
+export type Language = 'en' | 'tr';
 
 export interface TranslationDictionary {
   role: string;
@@ -180,6 +180,7 @@ export interface Quest {
   current: number;
   rewardXp: number;
   isCompleted: boolean;
+  objectives?: string[]; // Optional sub-objectives
 }
 
 export interface FloatingText {

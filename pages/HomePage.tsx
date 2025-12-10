@@ -2,6 +2,7 @@ import React from 'react';
 import { ViewState } from '../types';
 import { useTerminalContext } from '../context/TerminalContext';
 import { useAppContext } from '../context/AppContext';
+import { useLocaleContext } from '../context/LocaleContext';
 import SystemHeader from '../components/ui/SystemHeader';
 import MissionBriefing from '../components/ui/MissionBriefing';
 import StatsDeck from '../components/ui/StatsDeck';
@@ -11,7 +12,9 @@ import SEO from '../components/SEO';
 
 const HomePage: React.FC = () => {
   const { onRunTests, onNavigate } = useTerminalContext();
-  const { t } = useAppContext();
+  const { t } = useLocaleContext();
+
+  if (!t) return null;
 
   const personSchema = {
     "@context": "https://schema.org",
@@ -33,13 +36,12 @@ const HomePage: React.FC = () => {
         description="Software QA Engineer specializing in manual and automated testing for web and mobile applications. Expert in Selenium, Appium, and functional testing."
         structuredData={personSchema}
       />
-      <SystemHeader t={t} />
+      <SystemHeader />
       <MissionBriefing
-        t={t}
         onRunTests={onRunTests}
         onNavigateToSkills={() => onNavigate(ViewState.SKILLS)}
       />
-      <StatsDeck t={t} />
+      <StatsDeck />
     </div>
   );
 };

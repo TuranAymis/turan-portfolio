@@ -3,11 +3,10 @@ import { Language, TranslationDictionary, ViewState, Quest } from '../types';
 import { TRANSLATIONS } from '../constants';
 
 interface AppContextType {
-    language: Language;
-    setLanguage: (lang: Language) => void;
-    t: TranslationDictionary;
     registerNavigate: (fn: (view: ViewState) => void) => void;
     registerRunTests: (fn: () => void) => void;
+    registerUpdateQuest: (fn: (questId: string, amount?: number) => void) => void;
+    triggerUpdateQuest: (questId: string, amount?: number) => void;
     isFeedbackOpen: boolean;
     setFeedbackOpen: (isOpen: boolean) => void;
 }

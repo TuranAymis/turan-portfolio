@@ -1,14 +1,15 @@
 import React from 'react';
 import { TranslationDictionary } from '../types';
 import { useGame } from '../context/GameContext';
+import { useLocaleContext } from '../context/LocaleContext';
 import { Trophy, Star, Target, X } from 'lucide-react';
 
 interface GameOverlayProps {
   onToastClick?: (id: number) => void;
-  t: TranslationDictionary;
 }
 
-const GameOverlay: React.FC<GameOverlayProps> = ({ onToastClick, t }) => {
+const GameOverlay: React.FC<GameOverlayProps> = ({ onToastClick }) => {
+  const { t } = useLocaleContext();
   const { floatingTexts, toasts } = useGame();
   return (
     <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
@@ -38,8 +39,8 @@ const GameOverlay: React.FC<GameOverlayProps> = ({ onToastClick, t }) => {
           >
             {/* Minimal Icon Bubble */}
             <div className={`p-1.5 rounded-full ${toast.type === 'achievement' ? 'bg-yellow-500/20 text-yellow-400' :
-                toast.type === 'level-up' ? 'bg-emerald-500/20 text-emerald-400' :
-                  'bg-blue-500/20 text-blue-400'
+              toast.type === 'level-up' ? 'bg-emerald-500/20 text-emerald-400' :
+                'bg-blue-500/20 text-blue-400'
               }`}>
               {toast.type === 'achievement' && <Trophy size={14} />}
               {toast.type === 'level-up' && <Star size={14} />}
@@ -50,8 +51,8 @@ const GameOverlay: React.FC<GameOverlayProps> = ({ onToastClick, t }) => {
             <div className="flex-1 flex flex-col">
               <div className="flex items-center gap-2">
                 <span className={`text-[10px] font-bold uppercase tracking-wider ${toast.type === 'achievement' ? 'text-yellow-400' :
-                    toast.type === 'level-up' ? 'text-emerald-400' :
-                      'text-blue-400'
+                  toast.type === 'level-up' ? 'text-emerald-400' :
+                    'text-blue-400'
                   }`}>
                   {toast.type === 'achievement' ? t.achUnlocked : toast.type === 'level-up' ? t.levelUp : t.questComp}
                 </span>

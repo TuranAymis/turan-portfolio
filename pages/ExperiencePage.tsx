@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { useGame } from '../context/GameContext';
 import { useTerminalContext } from '../context/TerminalContext';
 import { useAppContext } from '../context/AppContext';
+import { useLocaleContext } from '../context/LocaleContext';
 import { Terminal as TermIcon, ChevronDown, ChevronUp, FolderOpen, Zap } from 'lucide-react';
 import { getExperience } from '../constants';
 
 import SEO from '../components/SEO';
 
 const ExperiencePage: React.FC = () => {
-  const { t, language } = useAppContext();
+  const { t, language } = useLocaleContext();
   const { spawnFloatText: onSpawnFloatText } = useGame();
   const { addLog: onAddLog } = useTerminalContext();
   const [expandedJobIds, setExpandedJobIds] = useState<Set<string>>(new Set());
+
+  if (!t) return null;
 
   // Generate Project Structured Data
   const projectsSchema = getExperience(language).flatMap(job =>
