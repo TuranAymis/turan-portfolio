@@ -12,6 +12,8 @@ interface BugContextType {
 
 const BugContext = createContext<BugContextType | undefined>(undefined);
 
+import { useAppContext } from './AppContext';
+
 export const useBugContext = () => {
     const context = useContext(BugContext);
     if (!context) {
@@ -83,6 +85,7 @@ export const BugProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     // Hooks from other contexts
     const { gainXp, spawnToast, triggerAchievement } = useGame();
     const { addLog } = useTerminalContext();
+    const { triggerUpdateQuest } = useAppContext();
 
     const catchBug = (id: string) => {
         const bug = bugs.find(b => b.id === id);
@@ -93,6 +96,7 @@ export const BugProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
         // Rewards
         gainXp(bug.xpReward);
+        triggerUpdateQuest('q2', 1);
         spawnToast(`BUG CAUGHT: ${bug.title}`, `+${bug.xpReward} XP`, 'achievement');
         addLog(`[FIX] Applied patch for ${bug.title}: ${bug.description}`, 'SUCCESS');
 

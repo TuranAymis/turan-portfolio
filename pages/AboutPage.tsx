@@ -1,7 +1,8 @@
 import React from 'react';
 import { useGame } from '../context/GameContext';
 import { useAppContext } from '../context/AppContext';
-import { CheckCircle, Brain, Scroll, Users, Zap, Dna, Package } from 'lucide-react';
+import { useLocaleContext } from '../context/LocaleContext';
+import { CheckCircle, Brain, Scroll, Users, Zap, Dna, Package, Download } from 'lucide-react';
 
 const FileTextIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -13,8 +14,12 @@ const FileTextIcon = () => (
 import SEO from '../components/SEO';
 
 const AboutPage: React.FC = () => {
-  const { t } = useAppContext();
+  const { t } = useLocaleContext();
   const { level, xp, spawnFloatText: onSpawnFloatText } = useGame();
+  const { triggerUpdateQuest } = useAppContext();
+
+  if (!t) return null;
+
   return (
     <div className="max-w-6xl mx-auto animate-in fade-in duration-700 px-2 md:px-0">
       <SEO
@@ -88,6 +93,22 @@ const AboutPage: React.FC = () => {
             </div>
             <div className="font-serif text-slate-300 leading-7 text-lg italic border-l-2 border-slate-700 pl-4">
               "{t.summary}"
+            </div>
+
+            {/* Download CV CTA */}
+            <div className="mt-6 flex justify-center">
+              <a
+                href="/resume.pdf"
+                download
+                onClick={(e) => {
+                  console.log('Recruiter Protocol Triggered');
+                  triggerUpdateQuest('q5', 1);
+                }}
+                className="inline-flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-semibold transition-all border-2 border-blue-400 hover:border-blue-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] group animate-pulse hover:animate-none"
+              >
+                <Download size={18} className="group-hover:translate-y-1 transition-transform" />
+                <span>Download Full Resume</span>
+              </a>
             </div>
           </div>
 

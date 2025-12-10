@@ -2,15 +2,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { TranslationDictionary } from '../types';
 import { useTerminalContext } from '../context/TerminalContext';
+import { useLocaleContext } from '../context/LocaleContext';
 import { Terminal as TerminalIcon, XCircle, MinusCircle, Maximize2 } from 'lucide-react';
 
 interface TerminalProps {
   isOpen: boolean;
   toggleOpen: () => void;
-  t: TranslationDictionary;
 }
 
-const Terminal: React.FC<TerminalProps> = ({ isOpen, toggleOpen, t }) => {
+const Terminal: React.FC<TerminalProps> = ({ isOpen, toggleOpen }) => {
+  const { t } = useLocaleContext();
   const { logs, handleCommand } = useTerminalContext();
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);

@@ -7,9 +7,10 @@ interface UseTerminalProps {
   language: Language;
   onNavigate: (view: ViewState) => void;
   onRunTests: () => void;
+  updateQuest?: (questId: string, amount?: number) => void;
 }
 
-export const useTerminal = ({ language, onNavigate, onRunTests }: UseTerminalProps) => {
+export const useTerminal = ({ language, onNavigate, onRunTests, updateQuest }: UseTerminalProps) => {
   const [logs, setLogs] = useState<LogEntry[]>([]);
 
   const addLog = useCallback((message: string, level: LogEntry['level'] = 'INFO') => {
@@ -60,6 +61,12 @@ export const useTerminal = ({ language, onNavigate, onRunTests }: UseTerminalPro
         break;
       default:
         addLog(`Command not found: ${cmd}.`, 'ERROR');
+        return; // Don't trigger quest for invalid commands
+    }
+
+    // Console Cowboy Quest: Trigger on any valid command
+    if (updateQuest) {
+      updateQuest('q3', 1);
     }
   }, [addLog, onNavigate, onRunTests]);
 

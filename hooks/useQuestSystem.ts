@@ -28,20 +28,36 @@ export const useQuestSystem = ({
     setActiveQuest(active || null);
   }, [quests]);
 
+  // Auto-complete Grand Master quest when all other quests are done
+  useEffect(() => {
+    const grandMasterQuest = quests.find(q => q.id === 'q6');
+    const otherQuests = quests.filter(q => q.id !== 'q6');
+
+    if (grandMasterQuest && !grandMasterQuest.isCompleted) {
+      const allOthersComplete = otherQuests.every(q => q.isCompleted);
+      const completedCount = otherQuests.filter(q => q.isCompleted).length;
+
+      if (allOthersComplete && completedCount === 5) {
+        // All 5 other quests complete, unlock Grand Master
+        updateQuest('q6', 5);
+      }
+    }
+  }, [quests]);
+
   const updateQuest = useCallback((questId: string, amount: number = 1) => {
     setQuests(prev => {
       return prev.map(q => {
         if (q.id === questId && !q.isCompleted) {
           const newCurrent = Math.min(q.current + amount, q.target);
           const isFinished = newCurrent >= q.target;
-          
+
           if (isFinished) {
             setTimeout(() => {
               onGainXp(q.rewardXp);
               onSpawnToast(q.title, `${t.questComp}! +${q.rewardXp} XP`, 'quest');
               onLog(`QUEST COMPLETE: ${q.title}`, 'SUCCESS');
               onQuestComplete(q);
-              
+
               // Set next quest
               const nextQ = prev.find(nq => nq.id !== q.id && !nq.isCompleted);
               if (nextQ) {
@@ -51,7 +67,7 @@ export const useQuestSystem = ({
               }
             }, 500);
           }
-          
+
           return { ...q, current: newCurrent, isCompleted: isFinished };
         }
         return q;

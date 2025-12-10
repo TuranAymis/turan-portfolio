@@ -27,15 +27,17 @@ interface TerminalProviderProps {
     language: Language;
     onNavigate: (view: ViewState) => void;
     onRunTests: () => void;
+    updateQuest?: (questId: string, amount?: number) => void;
 }
 
 export const TerminalProvider: React.FC<TerminalProviderProps> = ({
     children,
     language,
     onNavigate,
-    onRunTests
+    onRunTests,
+    updateQuest
 }) => {
-    const terminalState = useTerminal({ language, onNavigate, onRunTests });
+    const terminalState = useTerminal({ language, onNavigate, onRunTests, updateQuest });
 
     return (
         <TerminalContext.Provider value={{ ...terminalState, onNavigate, onRunTests }}>

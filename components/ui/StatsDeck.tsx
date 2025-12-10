@@ -1,12 +1,13 @@
 import React from 'react';
 import { TranslationDictionary } from '../../types';
+import { useLocaleContext } from '../../context/LocaleContext';
 import { Activity, Terminal as TermIcon, Users } from 'lucide-react';
 
 interface StatsDeckProps {
-  t: TranslationDictionary;
 }
 
-const StatsDeck: React.FC<StatsDeckProps> = ({ t }) => {
+const StatsDeck: React.FC<StatsDeckProps> = () => {
+  const { t } = useLocaleContext();
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
       {/* Experience Card */}
@@ -29,7 +30,7 @@ const StatsDeck: React.FC<StatsDeckProps> = ({ t }) => {
         </div>
         <div className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors truncate">Selenium / Appium</div>
         <div className="flex gap-1 mt-3">
-          {[1,2,3,4,5].map(i => <div key={i} className="h-1 flex-1 bg-blue-500/50 rounded-full"></div>)}
+          {[1, 2, 3, 4, 5].map(i => <div key={i} className="h-1 flex-1 bg-blue-500/50 rounded-full"></div>)}
         </div>
       </div>
 

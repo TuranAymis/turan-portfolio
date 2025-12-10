@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
+import { useLocaleContext } from '../context/LocaleContext';
 import {
   FileText,
   Terminal as TerminalIcon,
@@ -12,7 +13,8 @@ import {
   FileCode,
   X,
   MessageSquare,
-  AlertTriangle
+  AlertTriangle,
+  Download
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -21,7 +23,13 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ className, onClose }) => {
-  const { t, setFeedbackOpen } = useAppContext();
+  const { setFeedbackOpen, triggerUpdateQuest } = useAppContext();
+  const { t } = useLocaleContext();
+
+  if (!t) {
+    return null; // or a loading spinner
+  }
+
   const [isOpen, setIsOpen] = React.useState(true);
 
   const NavItem = ({ to, label, icon: Icon, extension }: { to: string, label: string, icon: any, extension: string }) => {
@@ -97,6 +105,20 @@ const Sidebar: React.FC<SidebarProps> = ({ className, onClose }) => {
 
       {/* Status Bar Indicator */}
       <div className="p-4 border-t border-ide-border mt-auto space-y-3">
+        {/* Download CV Button */}
+        <a
+          href="/resume.pdf"
+          download
+          onClick={(e) => {
+            console.log('Recruiter Protocol Triggered');
+            triggerUpdateQuest('q5', 1);
+          }}
+          className="w-full flex items-center gap-2 px-3 py-2 bg-blue-900/20 hover:bg-blue-900/40 text-blue-400 rounded text-xs transition-all border border-blue-500/50 hover:border-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] group"
+        >
+          <Download size={12} className="group-hover:animate-bounce" />
+          <span className="font-mono font-semibold">Download CV</span>
+        </a>
+
         {/* Feedback Trigger */}
         <button
           onClick={() => setFeedbackOpen(true)}

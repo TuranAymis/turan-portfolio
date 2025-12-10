@@ -1,14 +1,17 @@
 import React from 'react';
 import { useGame } from '../context/GameContext';
 import { useAppContext } from '../context/AppContext';
+import { useLocaleContext } from '../context/LocaleContext';
 import { Code, Activity } from 'lucide-react';
 import { SKILLS } from '../constants';
 
 import SEO from '../components/SEO';
 
 const SkillsPage: React.FC = () => {
-  const { t } = useAppContext();
+  const { t } = useLocaleContext();
   const { spawnFloatText, gainXp } = useGame();
+
+  if (!t) return null;
 
   const handleSkillClick = (e: React.MouseEvent, skillName: string) => {
     spawnFloatText(`Running ${skillName}...`, e.clientX, e.clientY, 'text-emerald-300');

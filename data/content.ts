@@ -36,7 +36,7 @@ export const CONTENT: Record<string, ContentData> = {
     en: {
         translations: {
             role: '"Software QA Engineer"',
-            summary: 'Proactive and detail-oriented Software QA Engineer with 6+ years of experience in manual and automated testing across web and mobile applications.',
+            summary: 'Proactive and detail-oriented Software QA Engineer with 6+ years of experience in manual and automated testing across web and mobile applications. Skilled in Selenium, Appium, and API testing.',
             runTests: 'Run Test Suite',
             viewSpecs: 'View Specs',
             experience: 'EXPERIENCE',
@@ -119,11 +119,8 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'Sep 2021 – Present',
                 location: 'Istanbul, Turkey',
                 description: [
-                    'Contributed to e-commerce projects focusing on UI, E2E integration, and API testing.',
-                    'Designed and implemented automation frameworks using Selenium and Appium (Testinium, Browserstack, Java).',
-                    'Created and executed comprehensive Test Plans, Test Cases, and End-to-End Scenarios based on user stories.',
-                    'Conducted manual API testing using Postman and utilized Azure as a remote repository.',
-                    'Actively participated in Agile ceremonies: sprint planning, daily scrums, grooming, and retrospectives.'
+                    'Focusing on UI, E2E integration, and API testing for e-commerce projects.',
+                    'Designing automation frameworks using Selenium and Appium (Testinium, Browserstack, Java).'
                 ],
                 techStack: ['Selenium', 'Appium', 'Java', 'Azure', 'Postman'],
                 projects: [
@@ -151,16 +148,13 @@ export const CONTENT: Record<string, ContentData> = {
             },
             {
                 id: 'dogus',
-                role: 'Software QA Engineer (Team Lead)',
-                company: 'Doğuş Technology',
+                role: 'QA Team Lead',
+                company: 'Doğuş Teknoloji (via Quality Museum)',
                 period: 'May 2021 – Sep 2021',
                 location: 'Istanbul, Turkey',
                 description: [
-                    'Led QA efforts for the "Zubizu" mobile application as QA Team Lead.',
-                    'Managed the test team, established strategies, and supervised resolved bugs.',
-                    'Developed a comprehensive Master Plan for testing processes and created reusable test case templates.',
-                    'Monitored task connections and scenario updates using Azure tools.',
-                    'Ensured regression scenarios were automated by the automation team.'
+                    'Led QA efforts for the Zubizu mobile app.',
+                    'Managed the test team, established strategies, and developed a comprehensive Master Plan.'
                 ],
                 techStack: ['Mobile Testing', 'Azure', 'Test Management', 'Zubizu'],
                 projects: [
@@ -193,11 +187,8 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'Sep 2018 – May 2021',
                 location: 'Istanbul, Turkey',
                 description: [
-                    'Specialized in mobile banking projects, performing UI and E2E integration tests.',
-                    'Executed front-end functionality tests of the mobile banking app.',
-                    'Tracked and reported bugs using TFS for efficient issue resolution.',
-                    'Conducted User Acceptance Tests (UAT) and prepared actionable feedback.',
-                    'Conducted web service testing using SOAP UI for robust backend validation.'
+                    'Performed UI and E2E integration tests for mobile banking apps.',
+                    'Tracked bugs using TFS and conducted User Acceptance Tests (UAT).'
                 ],
                 techStack: ['Mobile Banking', 'TFS', 'SOAP UI', 'SQL'],
                 projects: [
@@ -225,10 +216,67 @@ export const CONTENT: Record<string, ContentData> = {
             }
         ],
         quests: [
-            { id: 'q1', title: 'System Initialization', description: 'Run Test Suite to verify system integrity.', target: 1, current: 0, rewardXp: 300, isCompleted: false },
-            { id: 'q2', title: 'Bug Hunter', description: 'Find and squash 3 hidden bugs in the UI.', target: 3, current: 0, rewardXp: 500, isCompleted: false },
-            { id: 'q3', title: 'Full Coverage', description: 'Navigate to all 5 sections of the portfolio.', target: 5, current: 0, rewardXp: 800, isCompleted: false },
-            { id: 'q4', title: 'Grand Master', description: 'Unlock all achievements.', target: 5, current: 0, rewardXp: 1000, isCompleted: false },
+            {
+                id: 'q1',
+                title: 'Cypress Scout',
+                description: 'Visit Home, About, and Skills pages.',
+                target: 3,
+                current: 0,
+                rewardXp: 50,
+                isCompleted: false
+            },
+            {
+                id: 'q2',
+                title: 'Bug Hunter',
+                description: 'Find and report the hidden UI bug.',
+                target: 1,
+                current: 0,
+                rewardXp: 150,
+                isCompleted: false
+            },
+            {
+                id: 'q3',
+                title: 'Console Cowboy',
+                description: 'Execute a valid command in the Terminal.',
+                target: 1,
+                current: 0,
+                rewardXp: 75,
+                isCompleted: false
+            },
+            {
+                id: 'q4',
+                title: 'Polyglot Tester',
+                description: 'Toggle the language selector at least once.',
+                target: 1,
+                current: 0,
+                rewardXp: 50,
+                isCompleted: false
+            },
+            {
+                id: 'q5',
+                title: 'Recruiter Protocol',
+                description: "Click the 'Download CV' button or LinkedIn link.",
+                target: 1,
+                current: 0,
+                rewardXp: 100,
+                isCompleted: false
+            },
+            {
+                id: 'q6',
+                title: 'Grand Master',
+                description: 'Complete all other quests.',
+                target: 5,
+                current: 0,
+                rewardXp: 500,
+                isCompleted: false,
+                objectives: [
+                    "Cypress Scout",
+                    "Bug Hunter",
+                    "Console Cowboy",
+                    "Polyglot Tester",
+                    "Recruiter Protocol"
+                ]
+            },
         ],
         logs: [
             "Initializing TestSuite.ui v3.0.1...",
@@ -241,7 +289,7 @@ export const CONTENT: Record<string, ContentData> = {
     tr: {
         translations: {
             role: '"Yazılım KG Mühendisi"',
-            summary: 'Web ve mobil uygulamalarda manuel ve otomasyon testlerinde 6+ yıl deneyime sahip, proaktif ve detay odaklı Yazılım Kalite Güvence Mühendisi.',
+            summary: 'Web ve mobil uygulamalarda manuel ve otomasyon testleri konusunda uzman, 6 yılı aşkın deneyime sahip Yazılım Test Mühendisi. Selenium, Appium ve API test araçlarında deneyimli.',
             runTests: 'Testleri Çalıştır',
             viewSpecs: 'Özellikleri Gör',
             experience: 'DENEYİM',
@@ -324,11 +372,8 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'Eyl 2021 – Günümüz',
                 location: 'İstanbul, Türkiye',
                 description: [
-                    'UI, E2E entegrasyon ve API testlerine odaklanan e-ticaret projelerine katkıda bulundu.',
-                    'Selenium ve Appium (Testinium, Browserstack, Java) kullanarak otomasyon çerçeveleri tasarladı ve uyguladı.',
-                    'Kullanıcı hikayelerine dayalı kapsamlı Test Planları, Test Senaryoları ve Uçtan Uca Senaryolar oluşturdu ve yürüttü.',
-                    'Postman kullanarak manuel API testleri gerçekleştirdi ve işbirliği için Azure kullandı.',
-                    'Sprint planlama, günlük scrumlar ve retrospektifler dahil olmak üzere Agile seremonilerine aktif olarak katıldı.'
+                    'E-ticaret projelerinde UI, Uçtan Uca (E2E) entegrasyon ve API testlerinde görev aldım.',
+                    'Selenium ve Appium kullanarak otomasyon frameworkleri tasarladım.'
                 ],
                 techStack: ['Selenium', 'Appium', 'Java', 'Azure', 'Postman'],
                 projects: [
@@ -356,16 +401,13 @@ export const CONTENT: Record<string, ContentData> = {
             },
             {
                 id: 'dogus',
-                role: 'Software QA Engineer (Takım Lideri)',
-                company: 'Doğuş Technology',
+                role: 'QA Takım Lideri',
+                company: 'Doğuş Teknoloji (via Quality Museum)',
                 period: 'May 2021 – Eyl 2021',
                 location: 'İstanbul, Türkiye',
                 description: [
-                    '"Zubizu" mobil uygulaması için QA Takım Lideri olarak QA çalışmalarına liderlik etti.',
-                    'Test ekibini yönetti, stratejiler belirledi ve çözülen hataları denetledi.',
-                    'Test süreçleri için kapsamlı bir Ana Plan geliştirdi ve yeniden kullanılabilir test senaryosu şablonları oluşturdu.',
-                    'Azure araçlarını kullanarak görev bağlantılarını ve senaryo güncellemelerini izledi.',
-                    'Regresyon senaryolarının otomasyon ekibi tarafından otomatikleştirilmesini sağladı.'
+                    'Zubizu mobil uygulama projesinde QA Takım Lideri olarak görev aldım.',
+                    'Test ekibini yönettim ve test stratejilerini belirledim.'
                 ],
                 techStack: ['Mobile Testing', 'Azure', 'Test Management', 'Zubizu'],
                 projects: [
@@ -398,11 +440,8 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'Eyl 2018 – May 2021',
                 location: 'İstanbul, Türkiye',
                 description: [
-                    'Mobil bankacılık projelerinde uzmanlaştı, UI ve E2E entegrasyon testleri gerçekleştirdi.',
-                    'Mobil bankacılık uygulamasının ön uç işlevsellik testlerini yürüttü.',
-                    'Verimli sorun çözümü için TFS kullanarak hataları takip etti ve raporladı.',
-                    'Kullanıcı Kabul Testleri (UAT) gerçekleştirdi ve işleme alınabilir geri bildirimler hazırladı.',
-                    'Güçlü arka uç doğrulaması için SOAP UI kullanarak web servis testleri gerçekleştirdi.'
+                    'Mobil bankacılık uygulamalarının ön yüz (UI) ve fonksiyonel testlerini gerçekleştirdim.',
+                    'TFS kullanarak hata takibi yaptım ve UAT süreçlerini yürüttüm.'
                 ],
                 techStack: ['Mobile Banking', 'TFS', 'SOAP UI', 'SQL'],
                 projects: [
@@ -430,10 +469,67 @@ export const CONTENT: Record<string, ContentData> = {
             }
         ],
         quests: [
-            { id: 'q1', title: 'Sistem Başlatma', description: 'Sistem bütünlüğünü doğrulamak için Test Paketini Çalıştır.', target: 1, current: 0, rewardXp: 300, isCompleted: false },
-            { id: 'q2', title: 'Böcek Avcısı', description: 'Arayüzde gizlenmiş 3 hatayı bul ve ez.', target: 3, current: 0, rewardXp: 500, isCompleted: false },
-            { id: 'q3', title: 'Tam Kapsama', description: 'Portföyün 5 bölümünün hepsine git.', target: 5, current: 0, rewardXp: 800, isCompleted: false },
-            { id: 'q4', title: 'Büyük Usta', description: 'Tüm başarımların kilidini aç.', target: 5, current: 0, rewardXp: 1000, isCompleted: false },
+            {
+                id: 'q1',
+                title: 'Cypress İzci',
+                description: 'Ana Sayfa, Hakkımda ve Yetenekler sayfalarını ziyaret et.',
+                target: 3,
+                current: 0,
+                rewardXp: 50,
+                isCompleted: false
+            },
+            {
+                id: 'q2',
+                title: 'Böcek Avcısı',
+                description: 'Gizli UI hatasını bul ve raporla.',
+                target: 1,
+                current: 0,
+                rewardXp: 150,
+                isCompleted: false
+            },
+            {
+                id: 'q3',
+                title: 'Konsol Kovboyu',
+                description: 'Terminalde geçerli bir komut çalıştır.',
+                target: 1,
+                current: 0,
+                rewardXp: 75,
+                isCompleted: false
+            },
+            {
+                id: 'q4',
+                title: 'Çok Dilli Test Uzmanı',
+                description: 'Dil seçiciyi en az bir kez değiştir.',
+                target: 1,
+                current: 0,
+                rewardXp: 50,
+                isCompleted: false
+            },
+            {
+                id: 'q5',
+                title: 'İşe Alım Protokolü',
+                description: "'CV İndir' butonuna veya LinkedIn bağlantısına tıkla.",
+                target: 1,
+                current: 0,
+                rewardXp: 100,
+                isCompleted: false
+            },
+            {
+                id: 'q6',
+                title: 'Büyük Usta',
+                description: 'Diğer tüm görevleri tamamla.',
+                target: 5,
+                current: 0,
+                rewardXp: 500,
+                isCompleted: false,
+                objectives: [
+                    "Cypress İzci",
+                    "Böcek Avcısı",
+                    "Konsol Kovboyu",
+                    "Çok Dilli Test Uzmanı",
+                    "İşe Alım Protokolü"
+                ]
+            },
         ],
         logs: [
             "TestSuite.ui v3.0.1 Başlatılıyor...",
@@ -443,5 +539,5 @@ export const CONTENT: Record<string, ContentData> = {
             "Sistem hazır. Kullanıcı girişi bekleniyor."
         ]
     }
-    // Other languages omitted for brevity but would follow same structure
+    // Spanish, Chinese, Hindi, Arabic use English fallback via constants.tsx
 };
