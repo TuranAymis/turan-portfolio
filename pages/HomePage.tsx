@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
     "url": "https://turanaymis.com",
     "sameAs": [
       "https://github.com/TuranAymis",
-      "https://linkedin.com/in/turanaymis"
+      "https://www.linkedin.com/in/turan-aymis/"
     ],
     "knowsAbout": ["Software Testing", "Test Automation", "Selenium", "Appium", "React"]
   };
@@ -47,4 +47,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-

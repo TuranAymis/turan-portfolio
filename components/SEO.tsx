@@ -21,7 +21,7 @@ const SEO: React.FC<SEOProps> = ({
     // Default values
     const defaultTitle = 'Turan Aymis | Software QA Engineer';
     const defaultDescription = 'Portfolio of Turan Aymis, a Software QA Engineer specializing in Test Automation (Selenium, Appium), API Testing, and E2E validation.';
-    const defaultKeywords = 'QA Engineer, Yazılım Test Mühendisi, Automation, Selenium, Appium, Turan Aymış, Portfolio';
+    const defaultKeywords = 'QA Engineer, YazÄ±lÄ±m Test MÃ¼hendisi, Automation, Selenium, Appium, Turan AymÄ±ÅŸ, Portfolio';
     const defaultUrl = 'https://turanaymis.com/';
     const defaultImage = '/og-preview.png';
 
@@ -36,13 +36,13 @@ const SEO: React.FC<SEOProps> = ({
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Turan Aymis",
-        "alternateName": "Turan Aymış",
+        "alternateName": "Turan AymÄ±ÅŸ",
         "jobTitle": "Software QA Engineer",
         "description": "Software QA Engineer specializing in Test Automation, API Testing, and E2E validation with 6+ years of experience",
         "url": "https://turanaymis.com",
         "image": seoImage,
         "sameAs": [
-            "https://www.linkedin.com/in/turanaymis",
+            "https://www.linkedin.com/in/turan-aymis/",
             "https://github.com/turanaymis"
         ],
         "knowsAbout": [

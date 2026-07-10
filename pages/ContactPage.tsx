@@ -135,7 +135,7 @@ const ContactPage: React.FC = () => {
       <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 pb-20 md:pb-0">
         {[
           { label: 'GITHUB', icon: Github, href: 'https://github.com/TuranAymis', color: 'hover:border-white hover:text-white' },
-          { label: 'LINKEDIN', icon: Linkedin, href: 'https://linkedin.com/in/turan-aymis/', color: 'hover:border-blue-400 hover:text-blue-400' },
+          { label: 'LINKEDIN', icon: Linkedin, href: 'https://www.linkedin.com/in/turan-aymis/', color: 'hover:border-blue-400 hover:text-blue-400' },
           { label: 'EMAIL', icon: Mail, href: 'mailto:turanaymis@gmail.com', color: 'hover:border-amber-400 hover:text-amber-400' },
           { label: 'CALL', icon: Phone, href: 'tel:+905069402813', color: 'hover:border-purple-400 hover:text-purple-400' }
         ].map((link, i) => (
@@ -156,4 +156,3 @@ const ContactPage: React.FC = () => {
 };
 
 export default ContactPage;
-
