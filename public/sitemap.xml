@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  NOTE: The site currently uses HashRouter, so hash routes (e.g. /#/about)
-  are not meaningful to include in a sitemap. Only the root URL is listed.
-  When the router is migrated to BrowserRouter, add the individual routes
-  (/about, /skills, /experience, /projects, /contact) here.
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://turanaymis.com/</loc></url>
+  <url><loc>https://turanaymis.com/about</loc></url>
+  <url><loc>https://turanaymis.com/skills</loc></url>
+  <url><loc>https://turanaymis.com/experience</loc></url>
+  <url><loc>https://turanaymis.com/projects</loc></url>
+  <url><loc>https://turanaymis.com/contact</loc></url>
 </urlset>

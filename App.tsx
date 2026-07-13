@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
 import GameProviderWrapper from './components/GameProviderWrapper';
 import LoadingScreen from './components/ui/LoadingScreen';
@@ -16,7 +16,7 @@ const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 // --- OUTER APP ---
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ErrorBoundary>
         <GameProviderWrapper>
           <Suspense fallback={<LoadingScreen />}>
@@ -35,7 +35,7 @@ const App: React.FC = () => {
           </Suspense>
         </GameProviderWrapper>
       </ErrorBoundary>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
