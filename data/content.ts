@@ -1,8 +1,9 @@
-import { Skill, ExperienceItem, TranslationDictionary, Quest } from '../types';
+import { Skill, ExperienceItem, TranslationDictionary, Quest, Project } from '../types';
 
 export const SKILLS: Skill[] = [
     // Automation
     { id: 'selenium', name: 'Selenium', level: 95, category: 'automation', icon: 'Bot', isMastered: true },
+    { id: 'manualtesting', name: 'Manual Testing', level: 95, category: 'testing', icon: 'ClipboardCheck', isMastered: true },
     { id: 'appium', name: 'Appium', level: 90, category: 'automation', icon: 'Smartphone', isMastered: true },
     { id: 'testinium', name: 'Testinium', level: 85, category: 'automation', icon: 'TestTube', isMastered: false },
     { id: 'browserstack', name: 'Browserstack', level: 85, category: 'automation', icon: 'Globe', isMastered: false },
@@ -11,7 +12,7 @@ export const SKILLS: Skill[] = [
     { id: 'java', name: 'Java', level: 90, category: 'languages', icon: 'Coffee', isMastered: true },
     { id: 'python', name: 'Python', level: 80, category: 'languages', icon: 'FileCode', isMastered: false },
     { id: 'cucumber', name: 'Cucumber', level: 85, category: 'languages', icon: 'Sprout', isMastered: false },
-    { id: 'gauge', name: 'Gauge', level: 75, category: 'languages', icon: 'Gauge', isMastered: false },
+    { id: 'gauge', name: 'Gauge', level: 85, category: 'languages', icon: 'Gauge', isMastered: false },
 
     // API
     { id: 'postman', name: 'Postman', level: 95, category: 'api', icon: 'Send', isMastered: true },
@@ -20,14 +21,22 @@ export const SKILLS: Skill[] = [
 
     // CI/CD & Management
     { id: 'azure', name: 'Azure', level: 85, category: 'devops', icon: 'Cloud', isMastered: false },
-    { id: 'jira', name: 'Jira', level: 95, category: 'tracking', icon: 'Trello', isMastered: true },
+    { id: 'jira', name: 'Jira', level: 80, category: 'tracking', icon: 'Trello', isMastered: true },
     { id: 'tfs', name: 'TFS', level: 85, category: 'tracking', icon: 'GitMerge', isMastered: false },
     { id: 'sql', name: 'SQL', level: 80, category: 'languages', icon: 'Database', isMastered: false },
+
+    // Modern & AI-Assisted Testing
+    { id: 'playwright', name: 'Playwright', level: 90, category: 'automation', icon: 'Drama', isMastered: true },
+    { id: 'typescript', name: 'TypeScript', level: 75, category: 'languages', icon: 'Braces', isMastered: false },
+    { id: 'git', name: 'Git', level: 85, category: 'devops', icon: 'GitBranch', isMastered: false },
+    { id: 'apitesting', name: 'API Testing', level: 90, category: 'api', icon: 'Webhook', isMastered: true },
+    { id: 'aitesting', name: 'AI/LLM Testing', level: 85, category: 'automation', icon: 'Brain', isMastered: false },
 ];
 
 interface ContentData {
     translations: TranslationDictionary;
     experience: ExperienceItem[];
+    projects: Project[];
     quests: Quest[];
     logs: string[];
 }
@@ -36,13 +45,13 @@ export const CONTENT: Record<string, ContentData> = {
     en: {
         translations: {
             role: '"Software QA Engineer"',
-            summary: 'Proactive and detail-oriented Software QA Engineer with 6+ years of experience in manual and automated testing across web and mobile applications. Skilled in Selenium, Appium, and API testing.',
+            summary: 'Software QA Engineer with 7+ years of experience across banking, e-commerce, and mobile app projects, covering both manual and automated testing end to end. My current focus: integrating AI into testing workflows. I initiated test automation at my current company and built an LLM-as-a-Judge system that tests a production AI chatbot with 400+ scenarios.',
             runTests: 'Run Test Suite',
             viewSpecs: 'View Specs',
             experience: 'EXPERIENCE',
             frameworks: 'FRAMEWORKS',
             methodology: 'METHODOLOGY',
-            expLabel: '6+ Years',
+            expLabel: '7+ Years',
             testingLabel: 'Web & Mobile Testing',
             agileLabel: 'Agile / Scrum',
             aboutMe: 'About Me',
@@ -70,11 +79,44 @@ export const CONTENT: Record<string, ContentData> = {
             navSkills: 'skills',
             navHistory: 'work_history',
             navContact: 'contact',
+            navProjects: 'projects',
+            projectsTitle: 'Featured Projects',
+            featuredLabel: 'Featured',
+            viewCode: 'View Code',
+            liveReport: 'Live Report',
+            viewProjects: 'View Projects',
+            projectsSeoTitle: 'Projects | AI-Assisted QA & Test Automation',
+            projectsSeoDesc: "Selected projects by Turan Aymis: an LLM-as-a-Judge AI chatbot test framework, an AI-assisted Playwright QA framework, and the VentoRideSafety mobile app.",
             extDeps: 'External Dependencies',
             serverOnline: 'Server: Online',
             termReady: 'Ready',
             termHeader: 'Terminal — Local — zsh',
             termPlaceholder: "Type 'help' for commands...",
+            termHelpIntro: 'Available commands:',
+            termHelpRunTests: 'Execute automation suite',
+            termHelpGoto: 'Navigate (home, about, skills, exp, projects, contact)',
+            termHelpWhoami: 'Profile info',
+            termHelpClear: 'Clear terminal',
+            testLLMJudgeRun: 'Running LLM-as-a-Judge scenario pack: 400+ Q&A pairs...',
+            testLLMJudgePass: 'All chatbot responses validated',
+            cmdRunTestsDesc: 'Execute suite',
+            cmdGotoDesc: 'Navigate',
+            cmdWhoamiDesc: 'Profile info',
+            cmdHelpDesc: 'List cmds',
+            hints: [
+                "Try 'goto projects' to see my AI testing work",
+                "There's a hidden bug in the UI... can you find it?",
+                "Complete quests to earn XP",
+                "Press Ctrl+K for the command palette"
+            ],
+            workspaceTitle: 'QA_WORKSPACE',
+            portfolioProject: 'Portfolio_Project',
+            downloadCV: 'Download CV',
+            downloadResume: 'Download Full Resume',
+            reportIssue: 'Report Issue',
+            openCmdPalette: 'Open command palette',
+            cmdPalettePlaceholder: 'Type a command or search...',
+            cmdPaletteHelp: '↑↓ navigate · Enter select · Esc close',
             level: 'Player Level',
             activeQuest: 'Active Quest',
             allComplete: 'All quests complete!',
@@ -119,8 +161,13 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'Sep 2021 – Present',
                 location: 'Istanbul, Turkey',
                 description: [
-                    'Focusing on UI, E2E integration, and API testing for e-commerce projects.',
-                    'Designing automation frameworks using Selenium and Appium (Testinium, Browserstack, Java).'
+                    "I run the testing processes for Monster Notebook's e-commerce platform (4 country sites and iOS/Android apps). I initiated test automation at the company.",
+                    "Set up the first web test automation using TestProject; after the transition to Testinium infrastructure, developed all site automation scenarios myself with Java, Selenium, and Gauge.",
+                    "Self-taught Python and Playwright, then built the test automation for the company's AI chatbot agent from scratch: 400+ Q&A pairs from a JSON dataset, automated querying, LLM-as-a-Judge evaluation with pass/fail verdicts and reasoning, Allure reporting with screenshots, Excel export.",
+                    "Create test plans, test cases, and end-to-end scenarios based on user stories.",
+                    "Perform API testing with Postman.",
+                    "Run functional, regression, and E2E tests of the mobile apps on real devices and BrowserStack.",
+                    "Track and document defects in Azure DevOps."
                 ],
                 techStack: ['Selenium', 'Appium', 'Java', 'Azure', 'Postman'],
                 projects: [
@@ -153,8 +200,12 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'May 2021 – Sep 2021',
                 location: 'Istanbul, Turkey',
                 description: [
-                    'Led QA efforts for the Zubizu mobile app.',
-                    'Managed the test team, established strategies, and developed a comprehensive Master Plan.'
+                    "Led a team of 4 QA engineers on Doğuş Group's Zubizu mobile app (iOS/Android) as QA Team Lead.",
+                    "Created the project's master test plan and structured the testing processes.",
+                    "Built the standard test case template used across the team.",
+                    "Set up tracking of test scenarios and tasks in Azure DevOps.",
+                    "Managed the handover of regression scenarios to the automation team.",
+                    "Ran one-on-ones and workload planning with team members."
                 ],
                 techStack: ['Mobile Testing', 'Azure', 'Test Management', 'Zubizu'],
                 projects: [
@@ -187,8 +238,12 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'Sep 2018 – May 2021',
                 location: 'Istanbul, Turkey',
                 description: [
-                    'Performed UI and E2E integration tests for mobile banking apps.',
-                    'Tracked bugs using TFS and conducted User Acceptance Tests (UAT).'
+                    "Worked as a QA Engineer on mobile banking projects at Akbank (Akbank Mobile and Axess iOS/Android apps).",
+                    "Performed UI and E2E integration testing of the mobile applications.",
+                    "Wrote test scenarios based on analysis documents and managed them in TFS.",
+                    "Conducted web service testing with SOAP UI.",
+                    "Supported regression testing and user acceptance testing (UAT) processes.",
+                    "Created and maintained test data sets; managed defect reporting and tracking."
                 ],
                 techStack: ['Mobile Banking', 'TFS', 'SOAP UI', 'SQL'],
                 projects: [
@@ -215,11 +270,42 @@ export const CONTENT: Record<string, ContentData> = {
                 ]
             }
         ],
+        projects: [
+            {
+                id: 'llm-judge',
+                name: 'LLM-as-a-Judge — AI Chatbot Test Framework',
+                description: 'Open-source version of a system I built to test a production AI chatbot agent. Reads 400+ Q&A pairs from a JSON dataset, automatically queries the chatbot, evaluates responses using an LLM-as-a-Judge approach, and delivers pass/fail verdicts with reasoning. Provider-agnostic judge layer (OpenAI/Gemini), Allure reporting with screenshots, Excel export.',
+                tags: ['Playwright', 'Pytest', 'Python', 'OpenAI', 'Gemini', 'Allure'],
+                links: [
+                    { type: 'github', url: 'https://github.com/TuranAymis/llm-judge-chatbot-testing' }
+                ],
+                featured: true
+            },
+            {
+                id: 'playwright-framework',
+                name: 'AI-Assisted Playwright QA Framework',
+                description: 'E2E test framework built with Playwright + TypeScript: POM architecture, GitHub Actions CI, and a live HTML test report auto-published to GitHub Pages on every push.',
+                tags: ['Playwright', 'TypeScript', 'GitHub Actions', 'POM', 'CI/CD'],
+                links: [
+                    { type: 'github', url: 'https://github.com/TuranAymis/ai-assisted-playwright-qa-framework' },
+                    { type: 'live', url: 'https://turanaymis.github.io/ai-assisted-playwright-qa-framework/' }
+                ]
+            },
+            {
+                id: 'ventoridesafety',
+                name: 'VentoRideSafety',
+                description: 'Mobile app for motorcyclists that assesses weather conditions and riding risk. Built with React Native + Expo, developed with AI-assisted tooling. Preparing for App Store and Google Play release.',
+                tags: ['React Native', 'Expo', 'Mobile', 'AI-Assisted Development'],
+                links: [
+                    { type: 'github', url: 'https://github.com/TuranAymis/VentoRideSafety' }
+                ]
+            }
+        ],
         quests: [
             {
                 id: 'q1',
                 title: 'Cypress Scout',
-                description: 'Visit Home, About, and Skills pages.',
+                description: 'Explore any 3 pages of the portfolio',
                 target: 3,
                 current: 0,
                 rewardXp: 50,
@@ -279,23 +365,24 @@ export const CONTENT: Record<string, ContentData> = {
             },
         ],
         logs: [
-            "Initializing TestSuite.ui v3.0.1...",
+            "Initializing TestSuite.ui v3.1.0...",
             "Loading profile data for Turan Aymis...",
-            "Syncing with Azure/TFS Repositories... [MOCKED]",
-            "Calibrating automation proficiency...",
-            "System ready. Awaiting user input."
+            "7+ years QA experience detected.",
+            "AI testing modules loaded: LLM-as-a-Judge ready.",
+            "System ready. Type 'help' for commands.",
+            "Hint: try 'run-tests', 'goto projects' — or press Ctrl+K."
         ]
     },
     tr: {
         translations: {
             role: '"Yazılım KG Mühendisi"',
-            summary: 'Web ve mobil uygulamalarda manuel ve otomasyon testleri konusunda uzman, 6 yılı aşkın deneyime sahip Yazılım Test Mühendisi. Selenium, Appium ve API test araçlarında deneyimli.',
+            summary: "7+ yıllık deneyime sahip Software QA Engineer'ım. Bankacılık, e-ticaret ve mobil uygulama projelerinde manuel ve otomasyon testin her aşamasında çalıştım; güncel odağım AI'ı test süreçlerine entegre etmek. Çalıştığım şirkette test otomasyonunu başlatan kişiyim ve üretimdeki bir AI chatbot'u 400+ senaryoyla test eden LLM-as-a-Judge sistemini geliştirdim.",
             runTests: 'Testleri Çalıştır',
             viewSpecs: 'Özellikleri Gör',
             experience: 'DENEYİM',
             frameworks: 'ÇATILAR',
             methodology: 'METODOLOJİ',
-            expLabel: '6+ Yıl',
+            expLabel: '7+ Yıl',
             testingLabel: 'Web & Mobil Test',
             agileLabel: 'Agile / Scrum',
             aboutMe: 'Hakkımda',
@@ -323,11 +410,44 @@ export const CONTENT: Record<string, ContentData> = {
             navSkills: 'yetenekler',
             navHistory: 'iş_geçmişi',
             navContact: 'iletişim',
+            navProjects: 'projeler',
+            projectsTitle: 'Öne Çıkan Projeler',
+            featuredLabel: 'Öne Çıkan',
+            viewCode: 'Kodu Gör',
+            liveReport: 'Canlı Rapor',
+            viewProjects: 'Projeleri Gör',
+            projectsSeoTitle: 'Projeler | AI Destekli QA ve Test Otomasyonu',
+            projectsSeoDesc: "Turan Aymis'in seçili projeleri: LLM-as-a-Judge AI chatbot test framework'ü, AI destekli Playwright QA framework'ü ve VentoRideSafety mobil uygulaması.",
             extDeps: 'Harici Bağımlılıklar',
             serverOnline: 'Sunucu: Çevrimiçi',
             termReady: 'Hazır',
             termHeader: 'Terminal — Yerel — zsh',
             termPlaceholder: "Komutlar için 'help' yazın...",
+            termHelpIntro: 'Kullanılabilir komutlar:',
+            termHelpRunTests: 'Otomasyon paketini çalıştır',
+            termHelpGoto: 'Gezin (home, about, skills, exp, projects, contact)',
+            termHelpWhoami: 'Profil bilgisi',
+            termHelpClear: 'Terminali temizle',
+            testLLMJudgeRun: 'LLM-as-a-Judge senaryo paketi çalıştırılıyor: 400+ soru-cevap...',
+            testLLMJudgePass: 'Tüm chatbot yanıtları doğrulandı',
+            cmdRunTestsDesc: "Suite'i çalıştır",
+            cmdGotoDesc: 'Sayfaya git',
+            cmdWhoamiDesc: 'Profil bilgisi',
+            cmdHelpDesc: 'Komutları listele',
+            hints: [
+                "AI test projelerim için 'goto projects' yazın",
+                "Arayüzde gizli bir bug var... bulabilir misiniz?",
+                "Görevleri tamamlayıp XP kazanın",
+                "Komut paleti için Ctrl+K"
+            ],
+            workspaceTitle: 'QA_CALISMA_ALANI',
+            portfolioProject: 'PORTFOLYO_PROJESI',
+            downloadCV: 'CV İndir',
+            downloadResume: "CV'nin Tamamını İndir",
+            reportIssue: 'Sorun Bildir',
+            openCmdPalette: 'Komut paletini aç',
+            cmdPalettePlaceholder: 'Komut yazın veya arayın...',
+            cmdPaletteHelp: '↑↓ gezin · Enter seç · Esc kapat',
             level: 'Oyuncu Seviyesi',
             activeQuest: 'Aktif Görev',
             allComplete: 'Tüm görevler tamamlandı!',
@@ -372,8 +492,13 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'Eyl 2021 – Günümüz',
                 location: 'İstanbul, Türkiye',
                 description: [
-                    'E-ticaret projelerinde UI, Uçtan Uca (E2E) entegrasyon ve API testlerinde görev aldım.',
-                    'Selenium ve Appium kullanarak otomasyon frameworkleri tasarladım.'
+                    "Monster Notebook'un e-ticaret platformunda (4 ülke sitesi ve iOS/Android uygulamaları) test süreçlerini yürütüyorum. Şirkette test otomasyonunu başlatan kişiyim.",
+                    "Web sitelerinin ilk test otomasyonunu TestProject ile kurdum; Testinium altyapısına geçiş sonrasında tüm sitelerin otomasyon senaryolarını Java, Selenium ve Gauge ile kendim geliştirdim.",
+                    "Kendi öğrendiğim Python ve Playwright ile şirketin AI chatbot agent'ının test otomasyonunu sıfırdan geliştirdim: JSON veri setinden 400+ soru-cevap, otomatik sorgulama, LLM-as-a-Judge değerlendirmesi ile gerekçeli pass/fail kararları, ekran görüntülü Allure raporlama, Excel çıktısı.",
+                    "Kullanıcı hikayelerine dayalı test planları, test case'ler ve uçtan uca senaryolar hazırlıyorum.",
+                    "Postman ile API testleri yürütüyorum.",
+                    "Mobil uygulamaların fonksiyonel, regresyon ve E2E testlerini gerçek cihazlar ve BrowserStack üzerinde gerçekleştiriyorum.",
+                    "Azure DevOps üzerinde hata takibi ve defect dokümantasyonu yapıyorum."
                 ],
                 techStack: ['Selenium', 'Appium', 'Java', 'Azure', 'Postman'],
                 projects: [
@@ -406,8 +531,12 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'May 2021 – Eyl 2021',
                 location: 'İstanbul, Türkiye',
                 description: [
-                    'Zubizu mobil uygulama projesinde QA Takım Lideri olarak görev aldım.',
-                    'Test ekibini yönettim ve test stratejilerini belirledim.'
+                    "Doğuş Grubu'nun Zubizu mobil uygulamasında (iOS/Android) 4 kişilik test ekibini QA Team Lead olarak yönettim.",
+                    "Projenin master test planını oluşturdum ve test süreçlerini yapılandırdım.",
+                    "Ekipçe kullanılan standart test case şablonunu hazırladım.",
+                    "Azure DevOps üzerinde test senaryolarının ve görevlerin takibini kurdum.",
+                    "Regresyon senaryolarının otomasyon ekibine devrini yönettim.",
+                    "Ekip üyeleriyle birebir görüşmeler ve iş yükü planlaması yürüttüm."
                 ],
                 techStack: ['Mobile Testing', 'Azure', 'Test Management', 'Zubizu'],
                 projects: [
@@ -440,8 +569,12 @@ export const CONTENT: Record<string, ContentData> = {
                 period: 'Eyl 2018 – May 2021',
                 location: 'İstanbul, Türkiye',
                 description: [
-                    'Mobil bankacılık uygulamalarının ön yüz (UI) ve fonksiyonel testlerini gerçekleştirdim.',
-                    'TFS kullanarak hata takibi yaptım ve UAT süreçlerini yürüttüm.'
+                    "Akbank'ın mobil bankacılık projelerinde (Akbank Mobil ve Axess iOS/Android uygulamaları) QA Engineer olarak çalıştım.",
+                    "Mobil uygulamaların UI ve E2E entegrasyon testlerini yürüttüm.",
+                    "Analiz dokümanlarına dayalı test senaryoları yazdım ve TFS üzerinde yönettim.",
+                    "SOAP UI ile web servis testleri gerçekleştirdim.",
+                    "Regresyon testleri ve kullanıcı kabul testi (UAT) süreçlerine destek verdim.",
+                    "Test verisi setlerini oluşturup yönettim; hata raporlama ve takip süreçlerini yürüttüm."
                 ],
                 techStack: ['Mobile Banking', 'TFS', 'SOAP UI', 'SQL'],
                 projects: [
@@ -468,11 +601,42 @@ export const CONTENT: Record<string, ContentData> = {
                 ]
             }
         ],
+        projects: [
+            {
+                id: 'llm-judge',
+                name: 'LLM-as-a-Judge — AI Chatbot Test Framework',
+                description: "Üretimdeki bir AI chatbot agent'ını test etmek için geliştirdiğim sistemin açık kaynak versiyonu. 400+ soru-cevap çiftini JSON veri setinden okuyup chatbot'a otomatik soran, yanıtları LLM-as-a-Judge yöntemiyle değerlendirip pass/fail kararını gerekçesiyle veren framework. Sağlayıcı-bağımsız yargıç katmanı (OpenAI/Gemini), ekran görüntülü Allure raporlama, Excel çıktısı.",
+                tags: ['Playwright', 'Pytest', 'Python', 'OpenAI', 'Gemini', 'Allure'],
+                links: [
+                    { type: 'github', url: 'https://github.com/TuranAymis/llm-judge-chatbot-testing' }
+                ],
+                featured: true
+            },
+            {
+                id: 'playwright-framework',
+                name: 'AI-Assisted Playwright QA Framework',
+                description: "Playwright + TypeScript ile geliştirdiğim E2E test framework'ü: POM mimarisi, GitHub Actions CI ve her push'ta GitHub Pages'e otomatik yayımlanan canlı HTML test raporu.",
+                tags: ['Playwright', 'TypeScript', 'GitHub Actions', 'POM', 'CI/CD'],
+                links: [
+                    { type: 'github', url: 'https://github.com/TuranAymis/ai-assisted-playwright-qa-framework' },
+                    { type: 'live', url: 'https://turanaymis.github.io/ai-assisted-playwright-qa-framework/' }
+                ]
+            },
+            {
+                id: 'ventoridesafety',
+                name: 'VentoRideSafety',
+                description: 'Motosikletçiler için hava durumu ve sürüş riski değerlendirmesi yapan mobil uygulama. React Native + Expo ile, AI destekli geliştirme araçlarıyla üretildi. App Store ve Google Play yayın sürecinde.',
+                tags: ['React Native', 'Expo', 'Mobile', 'AI-Assisted Development'],
+                links: [
+                    { type: 'github', url: 'https://github.com/TuranAymis/VentoRideSafety' }
+                ]
+            }
+        ],
         quests: [
             {
                 id: 'q1',
                 title: 'Cypress İzci',
-                description: 'Ana Sayfa, Hakkımda ve Yetenekler sayfalarını ziyaret et.',
+                description: 'Portfolyoda 3 farklı sayfayı keşfet',
                 target: 3,
                 current: 0,
                 rewardXp: 50,
@@ -532,11 +696,12 @@ export const CONTENT: Record<string, ContentData> = {
             },
         ],
         logs: [
-            "TestSuite.ui v3.0.1 Başlatılıyor...",
-            "Turan Aymis için profil verileri yükleniyor...",
-            "Azure/TFS Depoları ile senkronize ediliyor... [MOCKED]",
-            "Otomasyon yeterliliği kalibre ediliyor...",
-            "Sistem hazır. Kullanıcı girişi bekleniyor."
+            "TestSuite.ui v3.1.0 başlatılıyor...",
+            "Turan Aymis profil verisi yükleniyor...",
+            "7+ yıl QA deneyimi algılandı.",
+            "AI test modülleri yüklendi: LLM-as-a-Judge hazır.",
+            "Sistem hazır. Komutlar için 'help' yazın.",
+            "İpucu: 'run-tests', 'goto projects' deneyin — veya Ctrl+K'ya basın."
         ]
     }
     // Spanish, Chinese, Hindi, Arabic use English fallback via constants.tsx

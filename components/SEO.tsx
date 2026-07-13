@@ -8,6 +8,7 @@ interface SEOProps {
     url?: string;
     image?: string;
     type?: string;
+    structuredData?: object | object[];
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -16,14 +17,15 @@ const SEO: React.FC<SEOProps> = ({
     keywords,
     url,
     image,
-    type = 'website'
+    type = 'website',
+    structuredData: customStructuredData
 }) => {
     // Default values
     const defaultTitle = 'Turan Aymis | Software QA Engineer';
     const defaultDescription = 'Portfolio of Turan Aymis, a Software QA Engineer specializing in Test Automation (Selenium, Appium), API Testing, and E2E validation.';
-    const defaultKeywords = 'QA Engineer, YazÄ±lÄ±m Test MÃ¼hendisi, Automation, Selenium, Appium, Turan AymÄ±ÅŸ, Portfolio';
+    const defaultKeywords = 'QA Engineer, Yazılım Test Mühendisi, Automation, Selenium, Appium, Turan Aymış, Portfolio';
     const defaultUrl = 'https://turanaymis.com/';
-    const defaultImage = '/og-preview.png';
+    const defaultImage = 'https://turanaymis.com/og-preview.png';
 
     const seoTitle = title || defaultTitle;
     const seoDescription = description || defaultDescription;
@@ -36,14 +38,14 @@ const SEO: React.FC<SEOProps> = ({
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Turan Aymis",
-        "alternateName": "Turan AymÄ±ÅŸ",
+        "alternateName": "Turan Aymış",
         "jobTitle": "Software QA Engineer",
-        "description": "Software QA Engineer specializing in Test Automation, API Testing, and E2E validation with 6+ years of experience",
+        "description": "Software QA Engineer specializing in Test Automation, API Testing, and E2E validation with 7+ years of experience",
         "url": "https://turanaymis.com",
         "image": seoImage,
         "sameAs": [
             "https://www.linkedin.com/in/turan-aymis/",
-            "https://github.com/turanaymis"
+            "https://github.com/TuranAymis"
         ],
         "knowsAbout": [
             "Test Automation",
@@ -107,6 +109,11 @@ const SEO: React.FC<SEOProps> = ({
             <script type="application/ld+json">
                 {JSON.stringify(structuredData)}
             </script>
+            {customStructuredData && (
+                <script type="application/ld+json">
+                    {JSON.stringify(customStructuredData)}
+                </script>
+            )}
         </Helmet>
     );
 };

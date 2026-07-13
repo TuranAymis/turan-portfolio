@@ -101,13 +101,12 @@ const AboutPage: React.FC = () => {
                 href="/resume.pdf"
                 download
                 onClick={(e) => {
-                  console.log('Recruiter Protocol Triggered');
                   triggerUpdateQuest('q5', 1);
                 }}
                 className="inline-flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-semibold transition-all border-2 border-blue-400 hover:border-blue-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] group animate-pulse hover:animate-none"
               >
                 <Download size={18} className="group-hover:translate-y-1 transition-transform" />
-                <span>Download Full Resume</span>
+                <span>{t.downloadResume}</span>
               </a>
             </div>
           </div>

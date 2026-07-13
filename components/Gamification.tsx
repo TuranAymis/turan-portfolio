@@ -11,24 +11,18 @@ interface GamificationProps {
     onClose?: () => void; // For mobile close button
 }
 
-const COMMANDS = [
-    { cmd: 'run-tests', desc: 'Execute suite' },
-    { cmd: 'goto <page>', desc: 'Navigate' },
-    { cmd: 'whoami', desc: 'Profile info' },
-    { cmd: 'help', desc: 'List cmds' },
-];
-
-const HINTS = [
-    "Use the terminal to 'run-tests' for massive XP.",
-    "There are bugs hidden in the UI. Click to squash!",
-    "Navigate using sidebar or terminal commands.",
-    "Achieve 100% coverage by visiting all sections.",
-    "Pro Tip: Hover over skills to see confidence levels."
-];
-
 const GamificationBar: React.FC<GamificationProps> = ({ activeQuest, className = "", onClose }) => {
     const { t } = useLocaleContext();
     const { level, xp, coverage, unlockedAchievements } = useGame();
+
+    const COMMANDS = [
+        { cmd: 'run-tests', desc: t.cmdRunTestsDesc },
+        { cmd: 'goto <page>', desc: t.cmdGotoDesc },
+        { cmd: 'whoami', desc: t.cmdWhoamiDesc },
+        { cmd: 'help', desc: t.cmdHelpDesc },
+    ];
+
+    const HINTS = t.hints;
     const nextLevelXp = level * 1000;
     const achievements = unlockedAchievements.length;
 

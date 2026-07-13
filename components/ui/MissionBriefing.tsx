@@ -1,14 +1,15 @@
 import React from 'react';
 import { ViewState } from '../../types';
 import { useLocaleContext } from '../../context/LocaleContext';
-import { Target, Shield, Play, Code, Cpu } from 'lucide-react';
+import { Target, Shield, Play, Code, Cpu, FolderGit2 } from 'lucide-react';
 
 interface MissionBriefingProps {
   onRunTests: (e?: React.MouseEvent) => void;
   onNavigateToSkills: () => void;
+  onNavigateToProjects: () => void;
 }
 
-const MissionBriefing: React.FC<MissionBriefingProps> = ({ onRunTests, onNavigateToSkills }) => {
+const MissionBriefing: React.FC<MissionBriefingProps> = ({ onRunTests, onNavigateToSkills, onNavigateToProjects }) => {
   const { t } = useLocaleContext();
   return (
     <div className="bg-slate-900/80 border border-slate-700 rounded-lg p-3 sm:p-4 md:p-8 relative overflow-hidden group shadow-2xl">
@@ -56,6 +57,14 @@ const MissionBriefing: React.FC<MissionBriefingProps> = ({ onRunTests, onNavigat
             >
               <Code size={20} />
               <span className="tracking-widest">{t.viewSpecs}</span>
+            </button>
+
+            <button
+              onClick={onNavigateToProjects}
+              className="bg-slate-800 border border-slate-600 hover:border-emerald-500 text-slate-300 hover:text-white font-bold py-4 px-8 rounded transition-all hover:translate-x-1 flex items-center justify-center gap-3 w-full sm:w-auto"
+            >
+              <FolderGit2 size={20} />
+              <span className="tracking-widest">{t.viewProjects}</span>
             </button>
           </div>
         </div>

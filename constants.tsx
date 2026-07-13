@@ -1,5 +1,5 @@
 
-import { Skill, ExperienceItem, Language, TranslationDictionary, Quest } from './types';
+import { Skill, ExperienceItem, Language, TranslationDictionary, Quest, Project } from './types';
 import { CONTENT, SKILLS as STATIC_SKILLS } from './data/content';
 
 // --- TRANSLATIONS ---
@@ -16,6 +16,10 @@ export const SKILLS = STATIC_SKILLS;
 
 export const getExperience = (lang: Language): ExperienceItem[] => {
   return CONTENT[lang]?.experience || CONTENT['en'].experience;
+};
+
+export const getProjects = (lang: Language): Project[] => {
+  return CONTENT[lang]?.projects || CONTENT['en'].projects;
 };
 
 export const getQuests = (lang: Language): Quest[] => {

@@ -10,6 +10,7 @@ const HomePage = React.lazy(() => import('./pages/HomePage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const SkillsPage = React.lazy(() => import('./pages/SkillsPage'));
 const ExperiencePage = React.lazy(() => import('./pages/ExperiencePage'));
+const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 
 // --- OUTER APP ---
@@ -26,6 +27,7 @@ const App: React.FC = () => {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="skills" element={<SkillsPage />} />
                 <Route path="experience" element={<ExperiencePage />} />
+                <Route path="projects" element={<ProjectsPage />} />
                 <Route path="contact" element={<ContactPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Route>

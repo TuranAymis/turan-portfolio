@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export type SkillCategory = 'automation' | 'languages' | 'api' | 'devops' | 'tracking';
+export type SkillCategory = 'automation' | 'languages' | 'api' | 'devops' | 'tracking' | 'testing';
 
 // New Language Type
 export type Language = 'en' | 'tr';
@@ -43,12 +43,47 @@ export interface TranslationDictionary {
   navSkills: string;
   navHistory: string;
   navContact: string;
+  navProjects: string;
+  // Projects
+  projectsTitle: string;
+  featuredLabel: string;
+  viewCode: string;
+  liveReport: string;
+  viewProjects: string;
+  projectsSeoTitle: string;
+  projectsSeoDesc: string;
   extDeps: string;
   serverOnline: string;
   // Terminal
   termReady: string;
   termHeader: string;
   termPlaceholder: string;
+  // Terminal Help
+  termHelpIntro: string;
+  termHelpRunTests: string;
+  termHelpGoto: string;
+  termHelpWhoami: string;
+  termHelpClear: string;
+  // Test Suite (run-tests)
+  testLLMJudgeRun: string;
+  testLLMJudgePass: string;
+  // System Commands Panel
+  cmdRunTestsDesc: string;
+  cmdGotoDesc: string;
+  cmdWhoamiDesc: string;
+  cmdHelpDesc: string;
+  // Hints
+  hints: string[];
+  // Sidebar
+  workspaceTitle: string;
+  portfolioProject: string;
+  downloadCV: string;
+  downloadResume: string;
+  reportIssue: string;
+  // Command Palette
+  openCmdPalette: string;
+  cmdPalettePlaceholder: string;
+  cmdPaletteHelp: string;
   // Gamification
   level: string;
   activeQuest: string;
@@ -121,6 +156,22 @@ export interface ProjectDetail {
   };
 }
 
+export type ProjectLinkType = 'github' | 'live';
+
+export interface ProjectLink {
+  type: ProjectLinkType;
+  url: string;
+}
+
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  tags: string[];
+  links: ProjectLink[];
+  featured?: boolean;
+}
+
 export interface ExperienceItem {
   id: string;
   role: string;
@@ -144,6 +195,7 @@ export enum ViewState {
   ABOUT = 'about.md',
   SKILLS = 'skills.spec.ts',
   EXPERIENCE = 'history.log',
+  PROJECTS = 'projects.json',
   CONTACT = 'report_bug.form'
 }
 

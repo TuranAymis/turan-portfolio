@@ -19,9 +19,9 @@ const GameProviderWrapper: React.FC<GameProviderWrapperProps> = ({ children }) =
     // const t = TRANSLATIONS[language]; // Moved to LocaleContext
 
     // References for Cross-Component Communication (Terminal <-> Layout)
-    const navigateRef = useRef<(view: ViewState) => void>((v) => console.log("Nav not ready"));
-    const runTestsRef = useRef<() => void>(() => console.log("Tests not ready"));
-    const updateQuestRef = useRef<(questId: string, amount?: number) => void>((q, a) => console.log("Quest update not ready"));
+    const navigateRef = useRef<(view: ViewState) => void>(() => {});
+    const runTestsRef = useRef<() => void>(() => {});
+    const updateQuestRef = useRef<(questId: string, amount?: number) => void>(() => {});
 
     // Registration Functions
     const registerNavigate = (fn: (view: ViewState) => void) => {
