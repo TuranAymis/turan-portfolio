@@ -1,5 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
+
+const SITE_ORIGIN = 'https://turanaymis.com';
 
 interface SEOProps {
     title?: string;
@@ -20,17 +23,23 @@ const SEO: React.FC<SEOProps> = ({
     type = 'website',
     structuredData: customStructuredData
 }) => {
+    const { pathname } = useLocation();
+
+    // Build a per-page canonical URL: root stays "/" (no trailing path),
+    // other routes become /about, /skills, etc. Strip any trailing slash.
+    const normalizedPath = pathname === '/' ? '' : pathname.replace(/\/+$/, '');
+    const canonicalUrl = `${SITE_ORIGIN}${normalizedPath || '/'}`;
+
     // Default values
     const defaultTitle = 'Turan Aymis | Software QA Engineer';
     const defaultDescription = 'Portfolio of Turan Aymis, a Software QA Engineer specializing in Test Automation (Selenium, Appium), API Testing, and E2E validation.';
     const defaultKeywords = 'QA Engineer, Yazılım Test Mühendisi, Automation, Selenium, Appium, Turan Aymış, Portfolio';
-    const defaultUrl = 'https://turanaymis.com/';
     const defaultImage = 'https://turanaymis.com/og-preview.png';
 
     const seoTitle = title || defaultTitle;
     const seoDescription = description || defaultDescription;
     const seoKeywords = keywords || defaultKeywords;
-    const seoUrl = url || defaultUrl;
+    const seoUrl = url || canonicalUrl;
     const seoImage = image || defaultImage;
 
     // JSON-LD Structured Data for Person Schema
