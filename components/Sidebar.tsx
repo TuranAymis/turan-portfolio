@@ -11,6 +11,7 @@ import {
   ChevronRight,
   ChevronDown,
   FileCode,
+  FolderGit2,
   X,
   MessageSquare,
   AlertTriangle,
@@ -60,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className, onClose }) => {
       <div className="h-12 flex items-center justify-between px-4 border-b border-ide-border shrink-0">
         <div className="flex items-center gap-2">
           <Layout size={18} className="text-blue-500" />
-          <span className="font-bold text-sm tracking-tight text-white">QA_WORKSPACE</span>
+          <span className="font-bold text-sm tracking-tight text-white">{t.workspaceTitle}</span>
         </div>
         {onClose && (
           <button onClick={onClose} className="md:hidden text-slate-400 hover:text-white">
@@ -79,7 +80,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className, onClose }) => {
             className="w-full flex items-center px-2 py-1 text-xs font-bold text-slate-300 hover:text-white uppercase tracking-wider mb-1"
           >
             {isOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-            <span className="ml-1">Portfolio_Project</span>
+            <span className="ml-1">{t.portfolioProject}</span>
           </button>
 
           {isOpen && (
@@ -88,6 +89,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className, onClose }) => {
               <NavItem to="/about" label={t.navAbout} icon={FileText} extension=".md" />
               <NavItem to="/skills" label={t.navSkills} icon={PlayCircle} extension=".spec.ts" />
               <NavItem to="/experience" label={t.navHistory} icon={FileCode} extension=".log" />
+              <NavItem to="/projects" label={t.navProjects} icon={FolderGit2} extension=".json" />
               <NavItem to="/contact" label={t.navContact} icon={Bug} extension=".form" />
             </div>
           )}
@@ -110,13 +112,12 @@ const Sidebar: React.FC<SidebarProps> = ({ className, onClose }) => {
           href="/resume.pdf"
           download
           onClick={(e) => {
-            console.log('Recruiter Protocol Triggered');
             triggerUpdateQuest('q5', 1);
           }}
           className="w-full flex items-center gap-2 px-3 py-2 bg-blue-900/20 hover:bg-blue-900/40 text-blue-400 rounded text-xs transition-all border border-blue-500/50 hover:border-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] group"
         >
           <Download size={12} className="group-hover:animate-bounce" />
-          <span className="font-mono font-semibold">Download CV</span>
+          <span className="font-mono font-semibold">{t.downloadCV}</span>
         </a>
 
         {/* Feedback Trigger */}
@@ -125,7 +126,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className, onClose }) => {
           className="w-full flex items-center gap-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition-colors border border-slate-700"
         >
           <AlertTriangle size={12} className="text-yellow-500" />
-          <span className="font-mono">Report Issue</span>
+          <span className="font-mono">{t.reportIssue}</span>
         </button>
 
         <div className="flex items-center gap-2 text-xs text-slate-400">
@@ -133,7 +134,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className, onClose }) => {
           <span>{t.serverOnline}</span>
         </div>
         <div className="text-[10px] text-slate-600 mt-1 font-mono">
-          v3.0.1-stable
+          v3.1.0-stable
         </div>
       </div>
     </div>

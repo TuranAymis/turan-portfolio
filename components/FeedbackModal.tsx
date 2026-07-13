@@ -36,8 +36,6 @@ const FeedbackModal: React.FC = () => {
                 // });
 
                 // Simulating Success
-                console.log("Feedback Submitted:", formData);
-
                 addLog(`Transmission Successful. Payload delivered via secure channel.`, 'SUCCESS');
                 spawnToast('Transmission Sent', 'Feedback received by HQ.', 'quest');
 

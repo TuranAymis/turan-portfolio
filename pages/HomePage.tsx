@@ -7,7 +7,6 @@ import SystemHeader from '../components/ui/SystemHeader';
 import MissionBriefing from '../components/ui/MissionBriefing';
 import StatsDeck from '../components/ui/StatsDeck';
 
-import Link from '../components/SEO'; // Importing as SEO to avoid conflicts if any
 import SEO from '../components/SEO';
 
 const HomePage: React.FC = () => {
@@ -40,6 +39,7 @@ const HomePage: React.FC = () => {
       <MissionBriefing
         onRunTests={onRunTests}
         onNavigateToSkills={() => onNavigate(ViewState.SKILLS)}
+        onNavigateToProjects={() => onNavigate(ViewState.PROJECTS)}
       />
       <StatsDeck />
     </div>

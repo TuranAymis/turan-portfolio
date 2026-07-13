@@ -67,7 +67,7 @@ const SkillsPage: React.FC = () => {
               {/* Stamp */}
               {skill.isMastered && (
                 <div className="absolute right-2 bottom-2 rotate-[-15deg] opacity-20 group-hover:opacity-50 transition-opacity border-2 border-emerald-500 text-emerald-500 px-2 py-0.5 rounded font-black text-lg uppercase tracking-widest pointer-events-none">
-                  CERTIFIED
+                  PASSED
                 </div>
               )}
             </div>

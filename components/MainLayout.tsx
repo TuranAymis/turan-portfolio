@@ -27,7 +27,9 @@ import {
     Menu,
     Trophy,
     Bug,
-    X
+    FolderGit2,
+    X,
+    Command
 } from 'lucide-react';
 
 // --- ICONS ---
@@ -52,6 +54,7 @@ const VIEW_PATH_MAP: Record<string, ViewState> = {
     '/about': ViewState.ABOUT,
     '/skills': ViewState.SKILLS,
     '/experience': ViewState.EXPERIENCE,
+    '/projects': ViewState.PROJECTS,
     '/contact': ViewState.CONTACT
 };
 
@@ -115,12 +118,12 @@ const MainLayout: React.FC = () => {
             newVisited.add(currentView);
             setVisitedViews(newVisited);
 
-            const newCoverage = (newVisited.size / 5) * 100;
+            const newCoverage = (newVisited.size / 6) * 100;
             gameState.setCoverage(newCoverage);
             gameState.gainXp(50);
             questSystem.updateQuest('q1', 1); // Cypress Scout: Visit pages
 
-            if (newVisited.size === 5) {
+            if (newVisited.size === 6) {
                 gameState.triggerAchievement("Full Coverage", 500, addLog);
             }
         }
@@ -157,6 +160,7 @@ const MainLayout: React.FC = () => {
             case ViewState.ABOUT: path = '/about'; break;
             case ViewState.SKILLS: path = '/skills'; break;
             case ViewState.EXPERIENCE: path = '/experience'; break;
+            case ViewState.PROJECTS: path = '/projects'; break;
             case ViewState.CONTACT: path = '/contact'; break;
         }
         navigate(path);
@@ -168,7 +172,7 @@ const MainLayout: React.FC = () => {
             addLog: addLog,
             spawnFloatText: gameState.spawnFloatText,
             triggerAchievement: (title, xpReward) => gameState.triggerAchievement(title, xpReward, addLog),
-            updateQuest: questSystem.updateQuest,
+            t,
             setIsTerminalOpen,
             isTerminalOpen,
         });
@@ -230,10 +234,18 @@ const MainLayout: React.FC = () => {
                     <button onClick={() => setIsMobileMenuOpen(true)} className="text-slate-400 hover:text-white">
                         <Menu size={24} />
                     </button>
-                    <span className="font-bold text-sm tracking-tight text-white">QA_WORKSPACE</span>
+                    <span className="font-bold text-sm tracking-tight text-white">{t.workspaceTitle}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
+                    <button
+                        onClick={() => setShowCmdPalette(true)}
+                        title={t.openCmdPalette}
+                        aria-label={t.openCmdPalette}
+                        className="text-slate-400 hover:text-white"
+                    >
+                        <Command size={20} />
+                    </button>
                     <button onClick={() => setIsStatsOpen(true)} className="text-yellow-500 hover:text-yellow-400 relative">
                         <Trophy size={20} />
                         {questSystem.activeQuest && !questSystem.activeQuest.isCompleted && (
@@ -283,8 +295,9 @@ const MainLayout: React.FC = () => {
                                 {currentView === ViewState.ABOUT && <FileTextIcon />}
                                 {currentView === ViewState.SKILLS && <Code size={12} />}
                                 {currentView === ViewState.EXPERIENCE && <TermIcon size={12} />}
+                                {currentView === ViewState.PROJECTS && <FolderGit2 size={12} />}
                                 {currentView === ViewState.CONTACT && <AlertCircle size={12} />}
-                                {t[`nav${currentView === 'overview' ? 'Overview' : currentView === 'about.md' ? 'About' : currentView === 'skills.spec.ts' ? 'Skills' : currentView === 'history.log' ? 'History' : 'Contact'}`]}
+                                {t[`nav${currentView === 'overview' ? 'Overview' : currentView === 'about.md' ? 'About' : currentView === 'skills.spec.ts' ? 'Skills' : currentView === 'history.log' ? 'History' : currentView === 'projects.json' ? 'Projects' : 'Contact'}`]}
                             </div>
                             <span className="absolute right-2 top-2 hover:bg-slate-700 rounded p-0.5 cursor-pointer text-slate-500">
                                 <XCircleIcon />
@@ -292,9 +305,25 @@ const MainLayout: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Language Switcher */}
-                    <div className="flex items-center gap-1 mb-1 mr-2">
-                        <Globe size={14} className="text-slate-500 mr-1" />
+                    {/* Right Controls */}
+                    <div className="flex items-center gap-2 mb-1 mr-2">
+                        {/* Command Palette Trigger */}
+                        <button
+                            onClick={() => setShowCmdPalette(true)}
+                            title={t.openCmdPalette}
+                            aria-label={t.openCmdPalette}
+                            className="flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-[#1e293b] rounded px-2 py-1 transition-colors"
+                        >
+                            <Command size={14} />
+                            <span className="hidden lg:flex items-center gap-1">
+                                <kbd className="text-[10px] font-mono border border-ide-border rounded px-1 py-0.5 bg-slate-800 text-slate-400">Ctrl</kbd>
+                                <kbd className="text-[10px] font-mono border border-ide-border rounded px-1 py-0.5 bg-slate-800 text-slate-400">K</kbd>
+                            </span>
+                        </button>
+
+                        {/* Language Switcher */}
+                        <div className="flex items-center gap-1">
+                            <Globe size={14} className="text-slate-500 mr-1" />
                         <select
                             value={language}
                             onChange={(e) => setLanguage(e.target.value as any)}
@@ -303,6 +332,7 @@ const MainLayout: React.FC = () => {
                             <option value="en">English</option>
                             <option value="tr">Türkçe</option>
                         </select>
+                        </div>
                     </div>
                 </div>
 
