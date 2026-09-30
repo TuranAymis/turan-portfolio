@@ -20,8 +20,8 @@ const SkillsPage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-2 md:px-0">
       <SEO
-        title="QA Skills & Tech Stack | Selenium, Appium, Java"
-        description="Explore Turan Aymis's technical skills including Test Automation (Selenium, Appium), Programming (Java, Python), and API Testing."
+        title="QA Skills & Tech Stack | Playwright, Selenium, Appium"
+        description="Explore Turan Aymis's technical skills including Test Automation (Playwright, Selenium, Appium), Programming (TypeScript, Python, Java), and API Testing."
       />
       <div className="flex items-center justify-between mb-8 border-b border-ide-border pb-4">
         <div className="flex items-center gap-2">

@@ -31,9 +31,9 @@ const SEO: React.FC<SEOProps> = ({
     const canonicalUrl = `${SITE_ORIGIN}${normalizedPath || '/'}`;
 
     // Default values
-    const defaultTitle = 'Turan Aymis | Software QA Engineer';
-    const defaultDescription = 'Portfolio of Turan Aymis, a Software QA Engineer specializing in Test Automation (Selenium, Appium), API Testing, and E2E validation.';
-    const defaultKeywords = 'QA Engineer, Yazılım Test Mühendisi, Automation, Selenium, Appium, Turan Aymış, Portfolio';
+    const defaultTitle = 'Turan Aymis | Senior Software QA Engineer';
+    const defaultDescription = 'Portfolio of Turan Aymis, a Senior Software QA Engineer specializing in Test Automation (Playwright, Selenium, Appium), API Testing, and AI-assisted testing (LLM-as-a-Judge).';
+    const defaultKeywords = 'QA Engineer, Yazılım Test Mühendisi, Automation, Playwright, Selenium, Appium, LLM-as-a-Judge, Turan Aymış, Portfolio';
     const defaultImage = 'https://turanaymis.com/og-preview.png';
 
     const seoTitle = title || defaultTitle;
@@ -48,21 +48,25 @@ const SEO: React.FC<SEOProps> = ({
         "@type": "Person",
         "name": "Turan Aymis",
         "alternateName": "Turan Aymış",
-        "jobTitle": "Software QA Engineer",
-        "description": "Software QA Engineer specializing in Test Automation, API Testing, and E2E validation with 7+ years of experience",
+        "jobTitle": "Senior Software QA Engineer",
+        "description": "Senior Software QA Engineer specializing in Test Automation (Playwright, Selenium), API Testing, and AI-assisted testing with 7+ years of experience",
         "url": "https://turanaymis.com",
         "image": seoImage,
         "sameAs": [
             "https://www.linkedin.com/in/turan-aymis/",
-            "https://github.com/TuranAymis"
+            "https://github.com/TuranAymis",
+            "https://medium.com/@turanaymis"
         ],
         "knowsAbout": [
             "Test Automation",
+            "Playwright",
             "Selenium WebDriver",
+            "LLM-as-a-Judge",
             "Appium",
             "API Testing",
             "Quality Assurance",
             "End-to-End Testing",
+            "TypeScript",
             "Java",
             "Python",
             "Postman",

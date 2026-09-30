@@ -31,8 +31,8 @@ const HomePage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto pt-2 md:pt-4 lg:pt-10 animate-in fade-in duration-700 w-full px-2 md:px-0">
       <SEO
-        title="Turan Aymis - Software QA Engineer | Portfolio"
-        description="Software QA Engineer specializing in manual and automated testing for web and mobile applications. Expert in Selenium, Appium, and functional testing."
+        title="Turan Aymis - Senior Software QA Engineer | Portfolio"
+        description="Senior Software QA Engineer with 7+ years in banking, e-commerce, web, mobile and API testing. Test automation with Playwright, Selenium and Appium; AI-assisted testing with LLM-as-a-Judge."
         structuredData={personSchema}
       />
       <SystemHeader />
