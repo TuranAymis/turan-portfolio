@@ -16,7 +16,7 @@ import PerformanceMonitor from './PerformanceMonitor';
 import FeedbackModal from './FeedbackModal';
 import { useAppContext } from '../context/AppContext';
 import { useLocaleContext } from '../context/LocaleContext';
-import { ViewState } from '../types';
+import { ViewState, type Language } from '../types';
 import { getQuests } from '../constants';
 import { handleRunTestSuite } from '../utils/testSuiteHandler';
 import {
@@ -238,6 +238,19 @@ const MainLayout: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-3">
+                    {/* Language switcher (the desktop one lives in the desktop-only top bar) */}
+                    <div className="flex items-center gap-1">
+                        <Globe size={14} className="text-slate-500" />
+                        <select
+                            aria-label="Language"
+                            value={language}
+                            onChange={(e) => setLanguage(e.target.value as Language)}
+                            className="bg-slate-800 text-slate-300 text-xs border border-slate-700 rounded px-1.5 py-0.5 outline-none focus:border-blue-500"
+                        >
+                            <option value="en">EN</option>
+                            <option value="tr">TR</option>
+                        </select>
+                    </div>
                     <button
                         onClick={() => setShowCmdPalette(true)}
                         title={t.openCmdPalette}

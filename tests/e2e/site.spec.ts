@@ -95,12 +95,10 @@ test.describe('content matches the CV', () => {
 });
 
 test.describe('language switch', () => {
-  test('switching to Turkish translates navigation and content', async ({ page }, testInfo) => {
-    // Known bug: the language <select> lives in the desktop-only top bar (`hidden md:flex` in
-    // MainLayout), so mobile visitors cannot switch language. Remove this line once fixed.
-    test.fixme(testInfo.project.name === 'mobile', 'Language switcher is not reachable on mobile');
+  test('switching to Turkish translates navigation and content', async ({ page }) => {
     await open(page, '/');
-    await page.locator('select').first().selectOption('tr');
+    // The desktop top bar and the mobile header each have a language select; only one is visible.
+    await page.locator('select:visible').first().selectOption('tr');
     // Client-side navigation keeps the selected language (the mobile sidebar is a hidden drawer).
     await page.evaluate(() => {
       window.history.pushState({}, '', '/experience');
