@@ -31,6 +31,10 @@ export const SKILLS: Skill[] = [
     { id: 'git', name: 'Git', level: 85, category: 'devops', icon: 'GitBranch', isMastered: false },
     { id: 'apitesting', name: 'API Testing', level: 90, category: 'api', icon: 'Webhook', isMastered: true },
     { id: 'aitesting', name: 'AI/LLM Testing', level: 85, category: 'automation', icon: 'Brain', isMastered: false },
+    { id: 'pytest', name: 'Pytest', level: 85, category: 'automation', icon: 'FlaskConical', isMastered: false },
+    { id: 'allure', name: 'Allure Report', level: 85, category: 'automation', icon: 'BarChart3', isMastered: false },
+    { id: 'testng', name: 'TestNG', level: 80, category: 'automation', icon: 'ListChecks', isMastered: false },
+    { id: 'githubactions', name: 'GitHub Actions', level: 80, category: 'devops', icon: 'Workflow', isMastered: false },
 ];
 
 interface ContentData {
@@ -44,8 +48,8 @@ interface ContentData {
 export const CONTENT: Record<string, ContentData> = {
     en: {
         translations: {
-            role: '"Software QA Engineer"',
-            summary: 'Software QA Engineer with 7+ years of experience across banking, e-commerce, and mobile app projects, covering both manual and automated testing end to end. My current focus: integrating AI into testing workflows. I initiated test automation at my current company and built an LLM-as-a-Judge system that tests a production AI chatbot with 400+ scenarios.',
+            role: '"Senior Software QA Engineer"',
+            summary: 'Senior Software QA Engineer with 7+ years of experience across banking, e-commerce, web, mobile and API testing. Built and modernized test automation across Java/Selenium/Gauge and TypeScript/Playwright, including an in-house Playwright framework running behind the corporate VPN. Built a Python + Playwright LLM-as-a-Judge system that evaluates 400+ production chatbot scenarios and reports results with Allure. Also built and shipped Vento, a production React Native app, to the App Store and Google Play.',
             runTests: 'Run Test Suite',
             viewSpecs: 'View Specs',
             experience: 'EXPERIENCE',
@@ -60,6 +64,8 @@ export const CONTENT: Record<string, ContentData> = {
             bachelorDesc: 'Kocaeli University — 2016',
             cs50: 'CS50x: Intro to Computer Science',
             cs50Desc: 'Harvard University (edX) — 2025',
+            linkedinLearning: 'LinkedIn Learning Courses',
+            linkedinLearningDesc: 'Test Management · Test Automation Foundations · BDD · APIs and Web Services — 2025',
             skillsTitle: 'Test Specifications (Skills)',
             suiteStability: 'Suite Stability',
             lastRun: 'Last Run: PASS',
@@ -86,7 +92,7 @@ export const CONTENT: Record<string, ContentData> = {
             liveReport: 'Live Report',
             viewProjects: 'View Projects',
             projectsSeoTitle: 'Projects | AI-Assisted QA & Test Automation',
-            projectsSeoDesc: "Selected projects by Turan Aymis: an LLM-as-a-Judge AI chatbot test framework, an AI-assisted Playwright QA framework, and the VentoRideSafety mobile app.",
+            projectsSeoDesc: "Selected projects by Turan Aymis: an LLM-as-a-Judge AI chatbot test framework, an AI-assisted Playwright QA framework, the Vento production mobile app, and the Orbit community platform.",
             extDeps: 'External Dependencies',
             serverOnline: 'Server: Online',
             termReady: 'Ready',
@@ -156,20 +162,20 @@ export const CONTENT: Record<string, ContentData> = {
         experience: [
             {
                 id: 'monster',
-                role: 'Software QA Engineer',
+                role: 'Senior Software QA Engineer',
                 company: 'Monster Notebook',
                 period: 'Sep 2021 – Present',
                 location: 'Istanbul, Turkey',
                 description: [
-                    "I run the testing processes for Monster Notebook's e-commerce platform (4 country sites and iOS/Android apps). I initiated test automation at the company.",
-                    "Set up the first web test automation using TestProject; after the transition to Testinium infrastructure, developed all site automation scenarios myself with Java, Selenium, and Gauge.",
-                    "Self-taught Python and Playwright, then built the test automation for the company's AI chatbot agent from scratch: 400+ Q&A pairs from a JSON dataset, automated querying, LLM-as-a-Judge evaluation with pass/fail verdicts and reasoning, Allure reporting with screenshots, Excel export.",
-                    "Create test plans, test cases, and end-to-end scenarios based on user stories.",
-                    "Perform API testing with Postman.",
-                    "Run functional, regression, and E2E tests of the mobile apps on real devices and BrowserStack.",
-                    "Track and document defects in Azure DevOps."
+                    "QA ownership for an e-commerce platform covering 4 country sites and iOS/Android applications.",
+                    "Rebuilt the web test automation as a TypeScript + Playwright framework and migrated execution to an in-house server behind the corporate VPN, modernizing the previous Testinium / Java / Selenium / Gauge setup.",
+                    "Designed and built a production AI chatbot test automation system from scratch with Python + Playwright: 400+ predefined questions, actual-vs-expected evaluation through an LLM-as-a-Judge layer (OpenAI/Gemini), reasoned pass/fail verdicts, Allure HTML reporting, screenshots and Excel export.",
+                    "Previously established the company's first web test automation — first with TestProject, then with Java, Selenium and Gauge on Testinium infrastructure.",
+                    "Own test planning, test case design and end-to-end scenarios from user stories; execute REST API testing with Postman across platform services.",
+                    "Manage functional, regression and E2E testing of iOS/Android apps on real devices and BrowserStack; track defects and documentation in Azure DevOps within Agile/Scrum delivery cycles.",
+                    "Use Cursor, Claude and ChatGPT as engineering assistants during framework design, debugging and refactoring while retaining technical review and decision ownership."
                 ],
-                techStack: ['Selenium', 'Appium', 'Java', 'Azure', 'Postman'],
+                techStack: ['Playwright', 'TypeScript', 'Python', 'Selenium', 'Appium', 'Java', 'Azure', 'Postman'],
                 projects: [
                     {
                         title: "Test Automation Architecture",
@@ -235,7 +241,7 @@ export const CONTENT: Record<string, ContentData> = {
                 id: 'akbank',
                 role: 'Software QA Engineer',
                 company: 'Akbank via Netaş',
-                period: 'Sep 2018 – May 2021',
+                period: 'Sep 2018 – Apr 2021',
                 location: 'Istanbul, Turkey',
                 description: [
                     "Worked as a QA Engineer on mobile banking projects at Akbank (Akbank Mobile and Axess iOS/Android apps).",
@@ -292,12 +298,26 @@ export const CONTENT: Record<string, ContentData> = {
                 ]
             },
             {
-                id: 'ventoridesafety',
-                name: 'VentoRideSafety',
-                description: 'Mobile app for motorcyclists that assesses weather conditions and riding risk. Built with React Native + Expo, developed with AI-assisted tooling. Preparing for App Store and Google Play release.',
-                tags: ['React Native', 'Expo', 'Mobile', 'AI-Assisted Development'],
+                id: 'vento',
+                name: 'Vento: Riding Conditions',
+                description: "Production mobile app I built and shipped from idea to App Store and Google Play; v1.0.3 is live on both stores. React Native, Expo and TypeScript with third-party APIs, RevenueCat, location and notifications. The product evaluates wind, precipitation, temperature, visibility, ice and route conditions to assess riding risk for motorcyclists. Covered product definition, development, QA, release management and store submission.",
+                tags: ['React Native', 'Expo', 'TypeScript', 'RevenueCat', 'iOS', 'Android'],
                 links: [
+                    { type: 'ios', url: 'https://apps.apple.com/us/app/vento-riding-conditions/id6762660260' },
+                    { type: 'android', url: 'https://play.google.com/store/apps/details?id=com.galamor.VentoAntigravity' },
+                    { type: 'website', url: 'https://ventoride.com/' },
                     { type: 'github', url: 'https://github.com/TuranAymis/VentoRideSafety' }
+                ],
+                featured: true
+            },
+            {
+                id: 'orbit',
+                name: 'Orbit — Local Community & Event Platform',
+                description: "Full-stack platform for local communities and events: a FastAPI backend (JWT auth, SQLAlchemy 2.0, Alembic migrations, PostgreSQL) and a React + TypeScript web client with protected routes and Vitest coverage.",
+                tags: ['FastAPI', 'Python', 'PostgreSQL', 'React', 'TypeScript', 'Vitest'],
+                links: [
+                    { type: 'github', label: 'Backend', url: 'https://github.com/TuranAymis/orbit-backend' },
+                    { type: 'github', label: 'Web', url: 'https://github.com/TuranAymis/orbit-web' }
                 ]
             }
         ],
@@ -375,8 +395,8 @@ export const CONTENT: Record<string, ContentData> = {
     },
     tr: {
         translations: {
-            role: '"Yazılım KG Mühendisi"',
-            summary: "7+ yıllık deneyime sahip Software QA Engineer'ım. Bankacılık, e-ticaret ve mobil uygulama projelerinde manuel ve otomasyon testin her aşamasında çalıştım; güncel odağım AI'ı test süreçlerine entegre etmek. Çalıştığım şirkette test otomasyonunu başlatan kişiyim ve üretimdeki bir AI chatbot'u 400+ senaryoyla test eden LLM-as-a-Judge sistemini geliştirdim.",
+            role: '"Kıdemli Yazılım KG Mühendisi"',
+            summary: "7+ yıllık deneyime sahip Kıdemli Yazılım KG Mühendisiyim; bankacılık, e-ticaret, web, mobil ve API testlerinde çalıştım. Java/Selenium/Gauge ve TypeScript/Playwright ile test otomasyonu kurdum ve modernize ettim; bunların arasında kurumsal VPN arkasında çalışan kurum içi bir Playwright framework'ü de var. Python + Playwright ile 400+ üretim chatbot senaryosunu değerlendiren ve sonuçları Allure ile raporlayan bir LLM-as-a-Judge sistemi geliştirdim. Ayrıca App Store ve Google Play'de yayında olan React Native uygulaması Vento'yu geliştirip yayına aldım.",
             runTests: 'Testleri Çalıştır',
             viewSpecs: 'Özellikleri Gör',
             experience: 'DENEYİM',
@@ -391,6 +411,8 @@ export const CONTENT: Record<string, ContentData> = {
             bachelorDesc: 'Kocaeli Üniversitesi — 2016',
             cs50: 'CS50x: Bilgisayar Bilimlerine Giriş',
             cs50Desc: 'Harvard Üniversitesi (edX) — 2025',
+            linkedinLearning: 'LinkedIn Learning Eğitimleri',
+            linkedinLearningDesc: 'Test Yönetimi · Test Otomasyonu Temelleri · BDD · API ve Web Servisleri — 2025',
             skillsTitle: 'Test Spesifikasyonları (Yetenekler)',
             suiteStability: 'Paket Kararlılığı',
             lastRun: 'Son Koşu: BAŞARILI',
@@ -417,7 +439,7 @@ export const CONTENT: Record<string, ContentData> = {
             liveReport: 'Canlı Rapor',
             viewProjects: 'Projeleri Gör',
             projectsSeoTitle: 'Projeler | AI Destekli QA ve Test Otomasyonu',
-            projectsSeoDesc: "Turan Aymis'in seçili projeleri: LLM-as-a-Judge AI chatbot test framework'ü, AI destekli Playwright QA framework'ü ve VentoRideSafety mobil uygulaması.",
+            projectsSeoDesc: "Turan Aymis'in seçili projeleri: LLM-as-a-Judge AI chatbot test framework'ü, AI destekli Playwright QA framework'ü Vento canlı mobil uygulaması ve Orbit topluluk platformu.",
             extDeps: 'Harici Bağımlılıklar',
             serverOnline: 'Sunucu: Çevrimiçi',
             termReady: 'Hazır',
@@ -487,20 +509,20 @@ export const CONTENT: Record<string, ContentData> = {
         experience: [
             {
                 id: 'monster',
-                role: 'Software QA Engineer',
+                role: 'Kıdemli Yazılım KG Mühendisi',
                 company: 'Monster Notebook',
                 period: 'Eyl 2021 – Günümüz',
                 location: 'İstanbul, Türkiye',
                 description: [
-                    "Monster Notebook'un e-ticaret platformunda (4 ülke sitesi ve iOS/Android uygulamaları) test süreçlerini yürütüyorum. Şirkette test otomasyonunu başlatan kişiyim.",
-                    "Web sitelerinin ilk test otomasyonunu TestProject ile kurdum; Testinium altyapısına geçiş sonrasında tüm sitelerin otomasyon senaryolarını Java, Selenium ve Gauge ile kendim geliştirdim.",
-                    "Kendi öğrendiğim Python ve Playwright ile şirketin AI chatbot agent'ının test otomasyonunu sıfırdan geliştirdim: JSON veri setinden 400+ soru-cevap, otomatik sorgulama, LLM-as-a-Judge değerlendirmesi ile gerekçeli pass/fail kararları, ekran görüntülü Allure raporlama, Excel çıktısı.",
-                    "Kullanıcı hikayelerine dayalı test planları, test case'ler ve uçtan uca senaryolar hazırlıyorum.",
-                    "Postman ile API testleri yürütüyorum.",
-                    "Mobil uygulamaların fonksiyonel, regresyon ve E2E testlerini gerçek cihazlar ve BrowserStack üzerinde gerçekleştiriyorum.",
-                    "Azure DevOps üzerinde hata takibi ve defect dokümantasyonu yapıyorum."
+                    "4 ülke sitesi ve iOS/Android uygulamalarından oluşan e-ticaret platformunun kalite sorumluluğunu üstleniyorum.",
+                    "Web test otomasyonunu TypeScript + Playwright framework'ü olarak yeniden kurdum ve çalıştırmayı kurumsal VPN arkasındaki kurum içi bir sunucuya taşıdım; önceki Testinium / Java / Selenium / Gauge yapısını modernize ettim.",
+                    "Python + Playwright ile üretimdeki AI chatbot için test otomasyon sistemini sıfırdan tasarlayıp geliştirdim: 400+ önceden tanımlı soru, LLM-as-a-Judge katmanı (OpenAI/Gemini) ile gerçekleşen-beklenen karşılaştırması, gerekçeli pass/fail kararları, Allure HTML raporlama, ekran görüntüleri ve Excel çıktısı.",
+                    "Daha önce şirketin ilk web test otomasyonunu kurdum: önce TestProject ile, ardından Testinium altyapısında Java, Selenium ve Gauge ile.",
+                    "Kullanıcı hikayelerinden test planlama, test case tasarımı ve uçtan uca senaryoları yönetiyorum; platform servislerinde Postman ile REST API testleri yürütüyorum.",
+                    "iOS/Android uygulamalarının fonksiyonel, regresyon ve E2E testlerini gerçek cihazlar ve BrowserStack üzerinde yönetiyorum; hata ve dokümantasyon takibini Agile/Scrum döngülerinde Azure DevOps ile yapıyorum.",
+                    "Framework tasarımı, hata ayıklama ve refactoring süreçlerinde Cursor, Claude ve ChatGPT'yi mühendislik asistanı olarak kullanıyorum; teknik inceleme ve karar sorumluluğu bende kalıyor."
                 ],
-                techStack: ['Selenium', 'Appium', 'Java', 'Azure', 'Postman'],
+                techStack: ['Playwright', 'TypeScript', 'Python', 'Selenium', 'Appium', 'Java', 'Azure', 'Postman'],
                 projects: [
                     {
                         title: "Test Otomasyon Mimarisi",
@@ -566,7 +588,7 @@ export const CONTENT: Record<string, ContentData> = {
                 id: 'akbank',
                 role: 'Software QA Engineer',
                 company: 'Akbank via Netaş',
-                period: 'Eyl 2018 – May 2021',
+                period: 'Eyl 2018 – Nis 2021',
                 location: 'İstanbul, Türkiye',
                 description: [
                     "Akbank'ın mobil bankacılık projelerinde (Akbank Mobil ve Axess iOS/Android uygulamaları) QA Engineer olarak çalıştım.",
@@ -623,12 +645,26 @@ export const CONTENT: Record<string, ContentData> = {
                 ]
             },
             {
-                id: 'ventoridesafety',
-                name: 'VentoRideSafety',
-                description: 'Motosikletçiler için hava durumu ve sürüş riski değerlendirmesi yapan mobil uygulama. React Native + Expo ile, AI destekli geliştirme araçlarıyla üretildi. App Store ve Google Play yayın sürecinde.',
-                tags: ['React Native', 'Expo', 'Mobile', 'AI-Assisted Development'],
+                id: 'vento',
+                name: 'Vento: Riding Conditions',
+                description: "Fikirden App Store ve Google Play yayınına kadar geliştirdiğim canlı mobil uygulama; v1.0.3 her iki mağazada da yayında. React Native, Expo ve TypeScript ile; üçüncü parti API'ler, RevenueCat, konum ve bildirimler. Rüzgar, yağış, sıcaklık, görüş mesafesi, buzlanma ve rota koşullarını değerlendirerek motosikletçiler için sürüş riskini hesaplıyor. Ürün tanımı, geliştirme, QA, sürüm yönetimi ve mağaza yayını süreçlerini kapsıyor.",
+                tags: ['React Native', 'Expo', 'TypeScript', 'RevenueCat', 'iOS', 'Android'],
                 links: [
+                    { type: 'ios', url: 'https://apps.apple.com/us/app/vento-riding-conditions/id6762660260' },
+                    { type: 'android', url: 'https://play.google.com/store/apps/details?id=com.galamor.VentoAntigravity' },
+                    { type: 'website', url: 'https://ventoride.com/' },
                     { type: 'github', url: 'https://github.com/TuranAymis/VentoRideSafety' }
+                ],
+                featured: true
+            },
+            {
+                id: 'orbit',
+                name: 'Orbit — Local Community & Event Platform',
+                description: "Yerel topluluklar ve etkinlikler için full-stack platform: FastAPI backend (JWT kimlik doğrulama, SQLAlchemy 2.0, Alembic migration'ları, PostgreSQL) ve korumalı route'lar ile Vitest kapsamı olan React + TypeScript web istemcisi.",
+                tags: ['FastAPI', 'Python', 'PostgreSQL', 'React', 'TypeScript', 'Vitest'],
+                links: [
+                    { type: 'github', label: 'Backend', url: 'https://github.com/TuranAymis/orbit-backend' },
+                    { type: 'github', label: 'Web', url: 'https://github.com/TuranAymis/orbit-web' }
                 ]
             }
         ],

@@ -3,7 +3,7 @@ import { useGame } from '../context/GameContext';
 import { useTerminalContext } from '../context/TerminalContext';
 import { useAppContext } from '../context/AppContext';
 import { useLocaleContext } from '../context/LocaleContext';
-import { Wifi, Lock, User, Radio, FileCode, Send, Github, Linkedin, Mail, Phone } from 'lucide-react';
+import { Wifi, Lock, User, Radio, FileCode, Send, Github, Linkedin, Mail, Phone, BookOpen } from 'lucide-react';
 import { handleContactSubmit as submitContact } from '../utils/contactHandler';
 import SEO from '../components/SEO';
 
@@ -37,7 +37,7 @@ const ContactPage: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto pt-2 md:pt-4 animate-in fade-in duration-700 w-full px-2 md:px-0">
       <SEO
-        title="Contact Turan Aymis | Hire QA Engineer"
+        title="Contact Turan Aymis | Hire a Senior QA Engineer"
         description="Get in touch with Turan Aymis for QA Engineering roles. Secure transmission channel open."
       />
       {/* CONSOLE HEADER */}
@@ -132,10 +132,11 @@ const ContactPage: React.FC = () => {
       </div>
 
       {/* FREQUENCY LINKS */}
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 pb-20 md:pb-0">
+      <div className="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4 pb-20 md:pb-0">
         {[
           { label: 'GITHUB', icon: Github, href: 'https://github.com/TuranAymis', color: 'hover:border-white hover:text-white' },
           { label: 'LINKEDIN', icon: Linkedin, href: 'https://www.linkedin.com/in/turan-aymis/', color: 'hover:border-blue-400 hover:text-blue-400' },
+          { label: 'MEDIUM', icon: BookOpen, href: 'https://medium.com/@turanaymis', color: 'hover:border-emerald-400 hover:text-emerald-400' },
           { label: 'EMAIL', icon: Mail, href: 'mailto:turanaymis@gmail.com', color: 'hover:border-amber-400 hover:text-amber-400' },
           { label: 'CALL', icon: Phone, href: 'tel:+905069402813', color: 'hover:border-purple-400 hover:text-purple-400' }
         ].map((link, i) => (

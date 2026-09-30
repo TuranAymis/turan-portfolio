@@ -90,7 +90,18 @@ const ProjectsPage: React.FC = () => {
               {/* Links */}
               <div className="flex flex-wrap gap-3 mt-auto">
                 {proj.links.map((link, i) => {
-                  const isLive = link.type === 'live';
+                  const isLive = link.type !== 'github';
+                  const label =
+                    link.label ??
+                    (link.type === 'live'
+                      ? t.liveReport
+                      : link.type === 'ios'
+                        ? 'App Store'
+                        : link.type === 'android'
+                          ? 'Google Play'
+                          : link.type === 'website'
+                            ? 'Website'
+                            : t.viewCode);
                   return (
                     <a
                       key={i}
@@ -99,7 +110,7 @@ const ProjectsPage: React.FC = () => {
                       rel="noopener noreferrer"
                       onClick={(e) =>
                         spawnFloatText(
-                          isLive ? 'Opening Report...' : 'Cloning...',
+                          link.type === 'github' ? 'Cloning...' : 'Opening...',
                           e.clientX,
                           e.clientY,
                           isLive ? 'text-emerald-300' : 'text-blue-300'
@@ -112,7 +123,7 @@ const ProjectsPage: React.FC = () => {
                       }`}
                     >
                       {isLive ? <ExternalLink size={16} /> : <Github size={16} />}
-                      {isLive ? t.liveReport : t.viewCode}
+                      {label}
                     </a>
                   );
                 })}

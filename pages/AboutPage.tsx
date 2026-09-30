@@ -146,6 +146,20 @@ const AboutPage: React.FC = () => {
                   <span className="text-[10px] text-purple-500 uppercase font-mono mt-1 block">Rarity: Legendary</span>
                 </div>
               </div>
+
+              <div
+                className="bg-slate-900 border border-slate-700 rounded-lg p-4 flex gap-4 items-center hover:border-emerald-500 transition-colors cursor-help group relative overflow-hidden md:col-span-2"
+                onClick={(e) => onSpawnFloatText('+10 INT', e.clientX, e.clientY, 'text-emerald-400')}
+              >
+                <div className="w-12 h-12 bg-slate-800 rounded flex items-center justify-center border border-slate-600 group-hover:border-emerald-500">
+                  <CheckCircle className="text-emerald-500" size={24} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white group-hover:text-emerald-400">{t.linkedinLearning}</h4>
+                  <p className="text-xs text-slate-500">{t.linkedinLearningDesc}</p>
+                  <span className="text-[10px] text-emerald-500 uppercase font-mono mt-1 block">Rarity: Uncommon</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

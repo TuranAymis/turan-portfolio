@@ -23,6 +23,8 @@ export interface TranslationDictionary {
   bachelorDesc: string;
   cs50: string;
   cs50Desc: string;
+  linkedinLearning: string;
+  linkedinLearningDesc: string;
   skillsTitle: string;
   suiteStability: string; // Replaced confidence
   lastRun: string; // New
@@ -156,11 +158,13 @@ export interface ProjectDetail {
   };
 }
 
-export type ProjectLinkType = 'github' | 'live';
+export type ProjectLinkType = 'github' | 'live' | 'ios' | 'android' | 'website';
 
 export interface ProjectLink {
   type: ProjectLinkType;
   url: string;
+  /** Optional button label; overrides the default for the link type. */
+  label?: string;
 }
 
 export interface Project {

@@ -2,7 +2,7 @@
 
 # Turan Aymış — Personal Portfolio
 
-Software QA Engineer olarak deneyimlerimi, teknik yetkinliklerimi, projelerimi ve profesyonel geçmişimi sunduğum kişisel portfolyo web sitesi.
+Senior Software QA Engineer olarak deneyimlerimi, teknik yetkinliklerimi, projelerimi ve profesyonel geçmişimi sunduğum kişisel portfolyo web sitesi.
 
 [English](#english) · [Türkçe](#türkçe) · [Live Website](https://www.turanaymis.com)
 
@@ -46,7 +46,7 @@ The website presents my professional background, Software QA experience, technic
 - React Router
 - React Helmet Async
 - Lucide React
-- CSS
+- Tailwind CSS
 
 ### Local installation
 
@@ -132,7 +132,7 @@ Web sitesinde profesyonel geçmişim, Software QA deneyimim, teknik yetkinlikler
 - React Router
 - React Helmet Async
 - Lucide React
-- CSS
+- Tailwind CSS
 
 ### Yerel kurulum
 
