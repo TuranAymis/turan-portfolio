@@ -109,6 +109,17 @@ test.describe('language switch', () => {
   });
 });
 
+test.describe('boot intro', () => {
+  test('plays on the first visit only', async ({ page }) => {
+    await page.goto('/about');
+    await expect(page.getByText('SYSTEM BOOT')).toBeVisible();
+    await expect(page.locator('a[href="/about"]').first()).toBeAttached({ timeout: 10_000 });
+    await page.reload();
+    await expect(page.locator('a[href="/about"]').first()).toBeAttached();
+    await expect(page.getByText('SYSTEM BOOT')).toHaveCount(0);
+  });
+});
+
 test.describe('static assets', () => {
   test('resume.pdf is served as the current CV', async ({ request }) => {
     const res = await request.get('/resume.pdf');

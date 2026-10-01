@@ -58,6 +58,24 @@ const VIEW_PATH_MAP: Record<string, ViewState> = {
     '/contact': ViewState.CONTACT
 };
 
+const INTRO_SEEN_KEY = 'matrix-intro-seen';
+
+function hasSeenIntro(): boolean {
+    try {
+        return window.localStorage.getItem(INTRO_SEEN_KEY) === '1';
+    } catch {
+        return false;
+    }
+}
+
+function markIntroSeen(): void {
+    try {
+        window.localStorage.setItem(INTRO_SEEN_KEY, '1');
+    } catch {
+        // Storage can be unavailable (private mode); the intro then simply plays again next time.
+    }
+}
+
 const MainLayout: React.FC = () => {
     const { registerNavigate, registerRunTests, registerUpdateQuest } = useAppContext();
     const { language, setLanguage, t } = useLocaleContext();
@@ -70,7 +88,8 @@ const MainLayout: React.FC = () => {
 
     // --- STATE ---
     const [visitedViews, setVisitedViews] = useState<Set<ViewState>>(new Set());
-    const [showIntro, setShowIntro] = useState(true);
+    // The boot animation plays on the first visit only; afterwards visitors go straight to the content.
+    const [showIntro, setShowIntro] = useState(() => !hasSeenIntro());
     const [showCmdPalette, setShowCmdPalette] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isStatsOpen, setIsStatsOpen] = useState(false);
@@ -188,11 +207,13 @@ const MainLayout: React.FC = () => {
 
     // Intro Timer
     useEffect(() => {
+        if (!showIntro) return;
         const timer = setTimeout(() => {
+            markIntroSeen();
             setShowIntro(false);
         }, 2000);
         return () => clearTimeout(timer);
-    }, []);
+    }, [showIntro]);
 
     // Command Palette Keyboard Shortcut
     useEffect(() => {
