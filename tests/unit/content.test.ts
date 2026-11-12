@@ -23,8 +23,8 @@ describe('translations', () => {
   it('presents the current seniority and experience', () => {
     expect(en.translations.role).toContain('Senior Software QA Engineer');
     expect(tr.translations.role).toContain('Kıdemli');
-    expect(en.translations.summary).toMatch(/7\+ years/);
-    expect(tr.translations.summary).toMatch(/7\+ yıl/);
+    expect(en.translations.summary).toMatch(/8\+ years/);
+    expect(tr.translations.summary).toMatch(/8\+ yıl/);
   });
 });
 
