@@ -31,6 +31,10 @@ export const SKILLS: Skill[] = [
     { id: 'git', name: 'Git', level: 85, category: 'devops', icon: 'GitBranch', isMastered: false },
     { id: 'apitesting', name: 'API Testing', level: 90, category: 'api', icon: 'Webhook', isMastered: true },
     { id: 'aitesting', name: 'AI/LLM Testing', level: 85, category: 'automation', icon: 'Brain', isMastered: false },
+    { id: 'locust', name: 'Locust', level: 80, category: 'automation', icon: 'Gauge', isMastered: false },
+    { id: 'lighthouse', name: 'Lighthouse', level: 80, category: 'automation', icon: 'BarChart3', isMastered: false },
+    { id: 'windowsserver', name: 'Windows Server', level: 80, category: 'devops', icon: 'Cloud', isMastered: false },
+    { id: 'aiassisted', name: 'Cursor / Claude Code / ChatGPT', level: 85, category: 'automation', icon: 'Brain', isMastered: false },
     { id: 'pytest', name: 'Pytest', level: 85, category: 'automation', icon: 'FlaskConical', isMastered: false },
     { id: 'allure', name: 'Allure Report', level: 85, category: 'automation', icon: 'BarChart3', isMastered: false },
     { id: 'testng', name: 'TestNG', level: 80, category: 'automation', icon: 'ListChecks', isMastered: false },
@@ -49,13 +53,13 @@ export const CONTENT: Record<string, ContentData> = {
     en: {
         translations: {
             role: '"Senior Software QA Engineer"',
-            summary: 'Senior Software QA Engineer with 7+ years of experience across banking, e-commerce, web, mobile and API testing. Built and modernized test automation across Java/Selenium/Gauge and TypeScript/Playwright, including an in-house Playwright framework running behind the corporate VPN. Built a Python + Playwright LLM-as-a-Judge system that evaluates 400+ production chatbot scenarios and reports results with Allure. Also built and shipped Vento, a production React Native app, to the App Store and Google Play.',
+            summary: 'Senior Software QA Engineer with 8+ years of experience across banking, e-commerce, web, mobile and API testing. Built and modernized test automation across Java/Selenium/Gauge and TypeScript/Playwright, including an in-house Playwright framework running behind the corporate VPN. Built a Python + Playwright LLM-as-a-Judge system that evaluates 400+ production chatbot scenarios and reports results with Allure. Set up daily scheduled test runs on an internal Windows Server (results emailed and published on an internal portal), and built hourly availability and performance monitoring for 14 domains (Python, Locust, PageSpeed, Lighthouse). Also built and shipped Vento, a production React Native app, to the App Store and Google Play.',
             runTests: 'Run Test Suite',
             viewSpecs: 'View Specs',
             experience: 'EXPERIENCE',
             frameworks: 'FRAMEWORKS',
             methodology: 'METHODOLOGY',
-            expLabel: '7+ Years',
+            expLabel: '8+ Years',
             testingLabel: 'Web & Mobile Testing',
             agileLabel: 'Agile / Scrum',
             aboutMe: 'About Me',
@@ -170,6 +174,9 @@ export const CONTENT: Record<string, ContentData> = {
                     "QA ownership for an e-commerce platform covering 4 country sites and iOS/Android applications.",
                     "Rebuilt the web test automation as a TypeScript + Playwright framework and migrated execution to an in-house server behind the corporate VPN, modernizing the previous Testinium / Java / Selenium / Gauge setup.",
                     "Designed and built a production AI chatbot test automation system from scratch with Python + Playwright: 400+ predefined questions, actual-vs-expected evaluation through an LLM-as-a-Judge layer (OpenAI/Gemini), reasoned pass/fail verdicts, Allure HTML reporting, screenshots and Excel export.",
+                    "Run the Playwright suite every day on an internal Windows Server behind the corporate VPN: it tests all company websites and an internal IT service screen, emails the results and publishes the latest status on an internal web portal.",
+                    "Built an internal availability monitoring system for 14 domains: hourly checks, email alerts when a domain is down, and a live status dashboard inside the company network.",
+                    "Performance testing with Python, Locust, PageSpeed and Lighthouse to evaluate load behaviour and front-end performance.",
                     "Previously established the company's first web test automation — first with TestProject, then with Java, Selenium and Gauge on Testinium infrastructure.",
                     "Own test planning, test case design and end-to-end scenarios from user stories; execute REST API testing with Postman across platform services.",
                     "Manage functional, regression and E2E testing of iOS/Android apps on real devices and BrowserStack; track defects and documentation in Azure DevOps within Agile/Scrum delivery cycles.",
@@ -202,11 +209,11 @@ export const CONTENT: Record<string, ContentData> = {
             {
                 id: 'dogus',
                 role: 'QA Team Lead',
-                company: 'Doğuş Teknoloji (via Quality Museum)',
+                company: 'Dou Technology (via Quality Museum)',
                 period: 'May 2021 – Sep 2021',
                 location: 'Istanbul, Turkey',
                 description: [
-                    "Led a team of 4 QA engineers on Doğuş Group's Zubizu mobile app (iOS/Android) as QA Team Lead.",
+                    "Led a 4-person QA team for Zubizu, Dou Group's iOS/Android loyalty application (fixed-term project).",
                     "Created the project's master test plan and structured the testing processes.",
                     "Built the standard test case template used across the team.",
                     "Set up tracking of test scenarios and tasks in Azure DevOps.",
@@ -387,7 +394,7 @@ export const CONTENT: Record<string, ContentData> = {
         logs: [
             "Initializing TestSuite.ui v3.1.0...",
             "Loading profile data for Turan Aymis...",
-            "7+ years QA experience detected.",
+            "8+ years QA experience detected.",
             "AI testing modules loaded: LLM-as-a-Judge ready.",
             "System ready. Type 'help' for commands.",
             "Hint: try 'run-tests', 'goto projects' — or press Ctrl+K."
@@ -396,13 +403,13 @@ export const CONTENT: Record<string, ContentData> = {
     tr: {
         translations: {
             role: '"Kıdemli Yazılım KG Mühendisi"',
-            summary: "7+ yıllık deneyime sahip Kıdemli Yazılım KG Mühendisiyim; bankacılık, e-ticaret, web, mobil ve API testlerinde çalıştım. Java/Selenium/Gauge ve TypeScript/Playwright ile test otomasyonu kurdum ve modernize ettim; bunların arasında kurumsal VPN arkasında çalışan kurum içi bir Playwright framework'ü de var. Python + Playwright ile 400+ üretim chatbot senaryosunu değerlendiren ve sonuçları Allure ile raporlayan bir LLM-as-a-Judge sistemi geliştirdim. Ayrıca App Store ve Google Play'de yayında olan React Native uygulaması Vento'yu geliştirip yayına aldım.",
+            summary: "8+ yıllık deneyime sahip Kıdemli Yazılım KG Mühendisiyim; bankacılık, e-ticaret, web, mobil ve API testlerinde çalıştım. Java/Selenium/Gauge ve TypeScript/Playwright ile test otomasyonu kurdum ve modernize ettim; bunların arasında kurumsal VPN arkasında çalışan kurum içi bir Playwright framework'ü de var. Python + Playwright ile 400+ üretim chatbot senaryosunu değerlendiren ve sonuçları Allure ile raporlayan bir LLM-as-a-Judge sistemi geliştirdim. Kurum içi bir Windows Server'da her gün çalışan, sonuçları e-postayla ve kurum içi portalda yayınlayan test otomasyonu kurdum; 14 domain için saatlik erişilebilirlik ve performans izleme sistemi geliştirdim (Python, Locust, PageSpeed, Lighthouse). Ayrıca App Store ve Google Play'de yayında olan React Native uygulaması Vento'yu geliştirip yayına aldım.",
             runTests: 'Testleri Çalıştır',
             viewSpecs: 'Özellikleri Gör',
             experience: 'DENEYİM',
             frameworks: 'ÇATILAR',
             methodology: 'METODOLOJİ',
-            expLabel: '7+ Yıl',
+            expLabel: '8+ Yıl',
             testingLabel: 'Web & Mobil Test',
             agileLabel: 'Agile / Scrum',
             aboutMe: 'Hakkımda',
@@ -517,6 +524,9 @@ export const CONTENT: Record<string, ContentData> = {
                     "4 ülke sitesi ve iOS/Android uygulamalarından oluşan e-ticaret platformunun kalite sorumluluğunu üstleniyorum.",
                     "Web test otomasyonunu TypeScript + Playwright framework'ü olarak yeniden kurdum ve çalıştırmayı kurumsal VPN arkasındaki kurum içi bir sunucuya taşıdım; önceki Testinium / Java / Selenium / Gauge yapısını modernize ettim.",
                     "Python + Playwright ile üretimdeki AI chatbot için test otomasyon sistemini sıfırdan tasarlayıp geliştirdim: 400+ önceden tanımlı soru, LLM-as-a-Judge katmanı (OpenAI/Gemini) ile gerçekleşen-beklenen karşılaştırması, gerekçeli pass/fail kararları, Allure HTML raporlama, ekran görüntüleri ve Excel çıktısı.",
+                    "Test paketini her gün kurum içi bir Windows Server'da, kurumsal VPN arkasında çalıştırıyorum: tüm şirket sitelerini ve kurum içi bir IT servis ekranını test ediyor, sonuçları e-postayla gönderiyor ve güncel durumu kurum içi bir web portalında yayınlıyor.",
+                    "14 domain için kurum içi erişilebilirlik izleme sistemi kurdum: saatlik kontroller, bir domain kapandığında e-posta uyarısı ve kurum ağında canlı durum paneli.",
+                    "Python, Locust, PageSpeed ve Lighthouse ile yük davranışını ve front-end performansını ölçen performans testleri yaptım.",
                     "Daha önce şirketin ilk web test otomasyonunu kurdum: önce TestProject ile, ardından Testinium altyapısında Java, Selenium ve Gauge ile.",
                     "Kullanıcı hikayelerinden test planlama, test case tasarımı ve uçtan uca senaryoları yönetiyorum; platform servislerinde Postman ile REST API testleri yürütüyorum.",
                     "iOS/Android uygulamalarının fonksiyonel, regresyon ve E2E testlerini gerçek cihazlar ve BrowserStack üzerinde yönetiyorum; hata ve dokümantasyon takibini Agile/Scrum döngülerinde Azure DevOps ile yapıyorum.",
@@ -549,11 +559,11 @@ export const CONTENT: Record<string, ContentData> = {
             {
                 id: 'dogus',
                 role: 'QA Takım Lideri',
-                company: 'Doğuş Teknoloji (via Quality Museum)',
+                company: 'Dou Teknoloji (via Quality Museum)',
                 period: 'May 2021 – Eyl 2021',
                 location: 'İstanbul, Türkiye',
                 description: [
-                    "Doğuş Grubu'nun Zubizu mobil uygulamasında (iOS/Android) 4 kişilik test ekibini QA Team Lead olarak yönettim.",
+                    "Dou Grubu'nun Zubizu sadakat uygulamasında (iOS/Android) 4 kişilik QA ekibine QA Team Lead olarak liderlik ettim (süreli proje).",
                     "Projenin master test planını oluşturdum ve test süreçlerini yapılandırdım.",
                     "Ekipçe kullanılan standart test case şablonunu hazırladım.",
                     "Azure DevOps üzerinde test senaryolarının ve görevlerin takibini kurdum.",
@@ -734,7 +744,7 @@ export const CONTENT: Record<string, ContentData> = {
         logs: [
             "TestSuite.ui v3.1.0 başlatılıyor...",
             "Turan Aymis profil verisi yükleniyor...",
-            "7+ yıl QA deneyimi algılandı.",
+            "8+ yıl QA deneyimi algılandı.",
             "AI test modülleri yüklendi: LLM-as-a-Judge hazır.",
             "Sistem hazır. Komutlar için 'help' yazın.",
             "İpucu: 'run-tests', 'goto projects' deneyin — veya Ctrl+K'ya basın."
