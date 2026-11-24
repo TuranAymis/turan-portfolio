@@ -20,35 +20,22 @@ const FeedbackModal: React.FC = () => {
 
     if (!isFeedbackOpen) return null;
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        addLog('Initiating secure transmission...', 'INFO');
+        addLog('Opening mail client...', 'INFO');
 
-        // Simulate network delay
-        setTimeout(async () => {
-            try {
-                // Placeholder Formspree endpoint (Replace with real one)
-                // const response = await fetch("https://formspree.io/f/YOUR_ID", {
-                //     method: "POST",
-                //     headers: { "Content-Type": "application/json" },
-                //     body: JSON.stringify(formData)
-                // });
+        // Opens the visitor's mail app with a prefilled report addressed to the site owner.
+        const subject = `[QA Portfolio] ${formData.type.toUpperCase()} report from ${formData.name}`;
+        const body = `Reporter: ${formData.name}\nEmail: ${formData.email}\nType: ${formData.type}\n\nMessage:\n${formData.message}`;
+        window.location.href = `mailto:aymis.dev@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-                // Simulating Success
-                addLog(`Transmission Successful. Payload delivered via secure channel.`, 'SUCCESS');
-                spawnToast('Transmission Sent', 'Feedback received by HQ.', 'quest');
+        addLog('Mail draft opened. Send it from your mail app.', 'SUCCESS');
+        spawnToast('Mail Draft Ready', 'Send it from your mail app.', 'quest');
 
-                setFeedbackOpen(false);
-                setFormData({ name: '', email: '', type: 'bug', message: '' });
-
-            } catch (error) {
-                addLog('Transmission Failed. Signal lost.', 'ERROR');
-                spawnToast('Transmission Failed', 'Check interference.', 'quest');
-            } finally {
-                setIsSubmitting(false);
-            }
-        }, 1500);
+        setFeedbackOpen(false);
+        setFormData({ name: '', email: '', type: 'bug', message: '' });
+        setIsSubmitting(false);
     };
 
     return (
